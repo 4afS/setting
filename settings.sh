@@ -16,7 +16,7 @@ sudo apt update
 sudo apt install python3-pip -y
 
 #install pip packages
-sudo pip install virtualenv
+sudo pip3 install virtualenv
 
 #install packages
 sudo apt-get install tree -y
