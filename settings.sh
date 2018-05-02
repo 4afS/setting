@@ -29,7 +29,9 @@ git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 
 #change template to .vim/template
 mkdir ~/.vim/template
-cp template/ ~/.vim/template
+cd ~/settings/template/
+cp c.txt cpp.txt Makefile.txt  ~/.vim/template
+cd $HOME
 
 #update packages
 sudo apt update
