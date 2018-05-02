@@ -27,6 +27,10 @@ sudo apt-get install tmux -y
 mkdir -p ~/.vim/bundle
 git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 
+#change template to .vim/template
+mkdir ~/.vim/template
+cp template/ ~/.vim/template
+
 #update packages
 sudo apt update
 
