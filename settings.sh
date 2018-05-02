@@ -42,5 +42,6 @@ python -V
 python3 -V
 python3.6 -V
 pip -V
+pip3 -V
 
 
