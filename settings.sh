@@ -22,6 +22,7 @@ sudo pip3 install virtualenv
 sudo apt-get install tree -y
 sudo apt-get install vim -y 
 sudo apt-get install tmux -y
+sudo apt-get install curl -y
 
 #install NeoBundle
 mkdir -p ~/.vim/bundle
@@ -40,6 +41,7 @@ sudo apt update
 tree --version
 vim --V
 tmux -V
+curl --version
 python -V
 python3 -V
 python3.6 -V
