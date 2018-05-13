@@ -1,7 +1,7 @@
 #install vim8
-sudo apt-get remove --purge vim vim-runtime vim-common -y
-sudo rm -rf /usr/local/share/vim -y
-sudo rm /usr/local/bin/vim -y
+sudo apt-get remove --purge vim vim-runtime vim-common
+sudo rm -rf /usr/local/share/vim
+sudo rm /usr/local/bin/vim
 sudo apt-get install -y git build-essential ncurses-dev lua5.2 lua5.2-dev luajit python-dev python3-dev
 cd /opt/
 git clone https://github.com/vim/vim

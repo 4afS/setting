@@ -24,6 +24,7 @@ NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'elzr/vim-json'
 " Note: You don't set neobundle setting in .gvimrc!
 
 
@@ -95,6 +96,10 @@ if neobundle#is_installed('neocomplete.vim')
     imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
     imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
 endif
+
+" ---- json setting ---
+let g:vim_json_syntax_conceal = 0
+
 " ---- encode setting ----
 set encoding=utf-8
 scriptencoding utf-8
