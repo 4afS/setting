@@ -1,36 +1,62 @@
-" Note: Skip initialization for vim-tiny or vim-small.
-if 0 | endif
-
+"dein Scripts-----------------------------
 if &compatible
-  set nocompatible               " Be iMproved
+    set nocompatible               " Be iMproved
 endif
 
 " Required:
-set runtimepath+=~/.vim/bundle/neobundle.vim/
+set runtimepath+=/home/right/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
+if dein#load_state('/home/right/.cache/dein')
+    call dein#begin('/home/right/.cache/dein')
 
-" Let NeoBundle manage NeoBundle
+" Let dein manage dein
 " Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+    call dein#add('/home/right/.cache/dein/repos/github.com/Shougo/dein.vim')
 
-" My Bundles here:
-" Refer to |:NeoBundle-examples|.
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'https://github.com/w0ng/vim-hybrid.git'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'elzr/vim-json'
-" Note: You don't set neobundle setting in .gvimrc!
+" Add or remove your plugins here:
+    " deoplete
+    call dein#add('Shougo/deoplete.nvim')
+    call dein#add('Shougo/neosnippet.vim')
+    call dein#add('Shougo/neosnippet-snippets')
+    call dein#add('Shougo/neco-syntax')
+    call dein#add('zchee/deoplete-clang')   " for clang
+"    call dein#add('zchee/deoplete-jedi')    " for python
+    " if it is not nvim
+    if !has('nvim')
+        call dein#add('roxma/nvim-yarp')
+        call dein#add('roxma/vim-hug-neovim-rpc')
+    endif
+    " color scheme
+    call dein#add('w0ng/vim-hybrid')
+    " status line
+    call dein#add('itchyny/lightline.vim')
+    " indent line
+    call dein#add('Yggdroot/indentLine')
+    " for .json files
+    call dein#add('elzr/vim-json')
+    " syntax highlight for any language
+    call dein#add('derekwyatt/vim-scala')
 
+" Required:
+    call dein#end()
+    call dein#save_state()
+endif
 
-call neobundle#end()
+" Required:
+syntax enable
 
-"Theme
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
+
+"End dein Scripts-------------------------
+
+" ---- enable plugins ----
+let g:deoplete#enable_at_startup = 1
+
+" ---- Theme ----
 set t_Co=256
 syntax on
 set background=dark
@@ -40,17 +66,24 @@ colorscheme hybrid
 autocmd BufNewFile *.c 0r $HOME/.vim/template/c.txt
 autocmd BufNewFile Makefile.* 0r $HOME/.vim/template/Makefile.txt
 autocmd BufNewFile *.cpp 0r $HOME/.vim/template/cpp.txt 
+autocmd BufNewFile *.scala 0r $HOME/.vim/template/scala.txt 
+
+" ---- language setting ----
+au BufNewFile,BufRead *.scala setf scala
+autocmd BufRead,BufNewFile *.scala setfiletype scala
 
 " ---- display setting ----
 set number 
 set cursorline
 set title 
 set showmatch 
+
+" ---- tav setting ----
 set expandtab
 set tabstop=4 
+set shiftwidth=4
 set smartindent
 set autoindent
-set shiftwidth=4
 set softtabstop=4
 
 " ---- input setting ----
@@ -84,17 +117,23 @@ if &term =~ "xterm"
     inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
 endif
 
-" ---- neocomplete・neosnippet setting ----
-if neobundle#is_installed('neocomplete.vim')
-    let g:neocomplete#enable_at_startup = 1
-    let g:neocomplete#enable_smart_case = 1
-    let g:neocomplete#min_keyword_length = 3
-    let g:neocomplete#enable_auto_delimiter = 1
-    let g:neocomplete#auto_completion_start_length = 1
-    inoremap <expr><BS> neocomplete#smart_close_popup()."<C-h>"
+" ---- key-mappings for deoplete ----
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-    imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
-    imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+    \ "\<Plug>(neosnippet_expand_or_jump)"
+        \: "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+    set conceallevel=2 concealcursor=i
 endif
 
 " ---- json setting ---
@@ -104,10 +143,3 @@ let g:vim_json_syntax_conceal = 0
 set encoding=utf-8
 scriptencoding utf-8
 set fileencoding=utf-8
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
