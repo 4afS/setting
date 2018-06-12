@@ -1,0 +1,4 @@
+obect Main{
+    def main(args: Array[String]){
+    }
+}
