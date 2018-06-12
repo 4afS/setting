@@ -15,13 +15,13 @@ if dein#load_state('/home/right/.cache/dein')
     call dein#add('/home/right/.cache/dein/repos/github.com/Shougo/dein.vim')
 
 " Add or remove your plugins here:
-    " deoplete
+    " deoplete related
     call dein#add('Shougo/deoplete.nvim')
     call dein#add('Shougo/neosnippet.vim')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('Shougo/neco-syntax')
     call dein#add('zchee/deoplete-clang')   " for clang
-"    call dein#add('zchee/deoplete-jedi')    " for python
+    call dein#add('zchee/deoplete-jedi')    " for python
     " if it is not nvim
     if !has('nvim')
         call dein#add('roxma/nvim-yarp')
@@ -37,6 +37,8 @@ if dein#load_state('/home/right/.cache/dein')
     call dein#add('elzr/vim-json')
     " syntax highlight for any language
     call dein#add('derekwyatt/vim-scala')
+    " run program on vim
+    call dein#add('thinca/vim-quickrun')
 
 " Required:
     call dein#end()
@@ -88,11 +90,9 @@ set softtabstop=4
 
 " ---- input setting ----
 set backspace=indent,eol,start
-set clipboard+=autoselect
 
 " ---- statusline setting ----
 set laststatus=2
-set showmode
 set noshowmode
 
 " ---- search setting ----
@@ -118,7 +118,9 @@ if &term =~ "xterm"
 endif
 
 " ---- key-mappings for deoplete ----
-" Plugin key-mappings.
+"   Ctrl+k : Jump target
+"   Tab    : Select snippet AND Jump target
+"   Ctrl+n : Move cursol
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
