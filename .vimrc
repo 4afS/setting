@@ -4,15 +4,15 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/home/right/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=/root/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/home/right/.cache/dein')
-    call dein#begin('/home/right/.cache/dein')
+if dein#load_state('/root/.cache/dein')
+    call dein#begin('/root/.cache/dein')
 
 " Let dein manage dein
 " Required:
-    call dein#add('/home/right/.cache/dein/repos/github.com/Shougo/dein.vim')
+    call dein#add('/root/.cache/dein/repos/github.com/Shougo/dein.vim')
 
 " Add or remove your plugins here:
     " deoplete related
@@ -59,6 +59,7 @@ let g:deoplete#enable_at_startup = 1
 " ---- Theme ----
 set t_Co=256
 syntax on
+set t_ut=
 set background=dark
 colorscheme hybrid
 
@@ -74,11 +75,11 @@ autocmd BufRead,BufNewFile *.scala setfiletype scala
 
 " ---- display setting ----
 set number 
-set cursorline
+"set cursorline
 set title 
 set showmatch 
 
-" ---- tav setting ----
+" ---- tab setting ----
 set expandtab
 set tabstop=4 
 set shiftwidth=4
