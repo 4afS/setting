@@ -20,8 +20,6 @@ if dein#load_state('/home/right/.cache/dein')
     call dein#add('Shougo/neosnippet.vim')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('Shougo/neco-syntax')
-    call dein#add('zchee/deoplete-clang')   " for clang
-    call dein#add('zchee/deoplete-jedi')    " for python
     " if it is not nvim
     if !has('nvim')
         call dein#add('roxma/nvim-yarp')
