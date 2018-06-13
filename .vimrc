@@ -4,15 +4,15 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/root/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=/home/right/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/root/.cache/dein')
-    call dein#begin('/root/.cache/dein')
+if dein#load_state('/home/right/.cache/dein')
+    call dein#begin('/home/right/.cache/dein')
 
 " Let dein manage dein
 " Required:
-    call dein#add('/root/.cache/dein/repos/github.com/Shougo/dein.vim')
+    call dein#add('/home/right/.cache/dein/repos/github.com/Shougo/dein.vim')
 
 " Add or remove your plugins here:
     " deoplete related
@@ -37,6 +37,8 @@ if dein#load_state('/root/.cache/dein')
     call dein#add('derekwyatt/vim-scala')
     " run program on vim
     call dein#add('thinca/vim-quickrun')
+    " complete (), {}, etc
+    call dein#add('cohama/lexima.vim')
 
 " Required:
     call dein#end()
@@ -78,6 +80,7 @@ set number
 "set cursorline
 set title 
 set showmatch 
+set guioptions-=m
 
 " ---- tab setting ----
 set expandtab
