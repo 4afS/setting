@@ -4,15 +4,15 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/home/right/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=/home/tia/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/home/right/.cache/dein')
-    call dein#begin('/home/right/.cache/dein')
+if dein#load_state('/home/tia/.cache/dein')
+    call dein#begin('/home/tia/.cache/dein')
 
 " Let dein manage dein
 " Required:
-    call dein#add('/home/right/.cache/dein/repos/github.com/Shougo/dein.vim')
+    call dein#add('/home/tia/.cache/dein/repos/github.com/Shougo/dein.vim')
 
 " Add or remove your plugins here:
     " deoplete related
@@ -37,6 +37,7 @@ if dein#load_state('/home/right/.cache/dein')
     call dein#add('derekwyatt/vim-scala')
     " run program on vim
     call dein#add('thinca/vim-quickrun')
+    call dein#add('Shougo/vimproc')
     " complete (), {}, etc
     call dein#add('cohama/lexima.vim')
 
@@ -69,7 +70,6 @@ colorscheme hybrid
 autocmd BufNewFile *.c 0r $HOME/.vim/template/c.txt
 autocmd BufNewFile Makefile.* 0r $HOME/.vim/template/Makefile.txt
 autocmd BufNewFile *.cpp 0r $HOME/.vim/template/cpp.txt 
-autocmd BufNewFile *.scala 0r $HOME/.vim/template/scala.txt 
 
 " ---- language setting ----
 au BufNewFile,BufRead *.scala setf scala
@@ -133,7 +133,10 @@ imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \: pumvisible() ? "\<C-n>" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
     \ "\<Plug>(neosnippet_expand_or_jump)"
-        \: "\<TAB>"
+    \: "\<TAB>"
+
+" ---- key-mappings ----
+nnoremap <C-k> :QuickRun<CR>
 
 " For snippet_complete marker.
 if has('conceal')
@@ -142,6 +145,15 @@ endif
 
 " ---- json setting ---
 let g:vim_json_syntax_conceal = 0
+
+" ---- quickrun setting ----
+let g:quickrun_config = {
+\   "_" : {
+\       "outputter/buffer/split" : ":botright 8sp",
+\       "outputter/buffer/close_on_empty" : 1,
+\       "runner" : "vimproc"
+\   }
+\}
 
 " ---- encode setting ----
 set encoding=utf-8
