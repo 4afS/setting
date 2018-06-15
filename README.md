@@ -1,7 +1,12 @@
 ## TO DO if you start setup
+- ***HAVE TO RUN
+    - `sudo apt update && apt upgrade`
+
 - add `export PS1='\u@\h:\W\$ '` to .bashrc at the LAST line
 
-- run `source copy_files_to_home.sh`
+- add parsonal infomation to .netrc
+
+- run `source copy_dotfiles_to_home.sh`
 
 - check the vim version 
     - if the version of Vim 8.0 or above or NeoVim

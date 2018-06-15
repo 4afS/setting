@@ -37,7 +37,7 @@ if dein#load_state('/home/tia/.cache/dein')
     call dein#add('derekwyatt/vim-scala')
     " run program on vim
     call dein#add('thinca/vim-quickrun')
-    call dein#add('Shougo/vimproc')
+    call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
     " complete (), {}, etc
     call dein#add('cohama/lexima.vim')
 
@@ -129,31 +129,34 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
 imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
+    \ "\<Plug>(neosnippet_expand_or_jump)"
+    \: pumvisible() ? "\<C-n>" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
     \ "\<Plug>(neosnippet_expand_or_jump)"
     \: "\<TAB>"
 
 " ---- key-mappings ----
-nnoremap <C-k> :QuickRun<CR>
+nnoremap <C-k> :write<CR>:QuickRun<CR>
 
 " For snippet_complete marker.
 if has('conceal')
     set conceallevel=2 concealcursor=i
 endif
 
-" ---- json setting ---
-let g:vim_json_syntax_conceal = 0
-
 " ---- quickrun setting ----
 let g:quickrun_config = {
 \   "_" : {
+\       "runner" : "vimproc",
+\       "runner/vimproc/updatetime" : 10,
 \       "outputter/buffer/split" : ":botright 8sp",
-\       "outputter/buffer/close_on_empty" : 1,
-\       "runner" : "vimproc"
+\       "utputter/error/success" : "buffer",
+\       "outputter/error/error" : "buffer",
 \   }
 \}
+
+
+" ---- json setting ---
+let g:vim_json_syntax_conceal = 0
 
 " ---- encode setting ----
 set encoding=utf-8
