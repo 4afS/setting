@@ -1,1 +1,1 @@
-cp ./template/ ~/.vim/template/
+cp -rf ./template/* ~/.vim/template/
