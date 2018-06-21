@@ -4,15 +4,15 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/home/tia/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=/home/right/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/home/tia/.cache/dein')
-    call dein#begin('/home/tia/.cache/dein')
+if dein#load_state('/home/right/.cache/dein')
+    call dein#begin('/home/right/.cache/dein')
 
 " Let dein manage dein
 " Required:
-    call dein#add('/home/tia/.cache/dein/repos/github.com/Shougo/dein.vim')
+    call dein#add('/home/right/.cache/dein/repos/github.com/Shougo/dein.vim')
 
 " Add or remove your plugins here:
     " deoplete related
@@ -40,6 +40,12 @@ if dein#load_state('/home/tia/.cache/dein')
     call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
     " complete (), {}, etc
     call dein#add('cohama/lexima.vim')
+    " Tree
+    call dein#add('scrooloose/nerdtree')
+    " comment out
+    call dein#add('tomtom/tcomment_vim')
+    " template
+    call dein#add('mattn/sonictemplate-vim')
 
 " Required:
     call dein#end()
@@ -64,12 +70,12 @@ set t_Co=256
 syntax on
 set t_ut=
 set background=dark
-colorscheme hybrid
+colorscheme hybrid 
+let g:hybrid_custom_term_colors = 1
+let g:hybrid_reduced_contrast = 1
 
 " ---- template setting ----
-autocmd BufNewFile *.c 0r $HOME/.vim/template/c.txt
-autocmd BufNewFile Makefile.* 0r $HOME/.vim/template/Makefile.txt
-autocmd BufNewFile *.cpp 0r $HOME/.vim/template/cpp.txt 
+let g:sonictemplate_vim_template_dir = ['~/.vim/template']
 
 " ---- language setting ----
 au BufNewFile,BufRead *.scala setf scala
@@ -137,6 +143,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 " ---- key-mappings ----
 nnoremap <C-k> :write<CR>:QuickRun<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
 
 " For snippet_complete marker.
 if has('conceal')
@@ -157,6 +164,16 @@ let g:quickrun_config = {
 
 " ---- json setting ---
 let g:vim_json_syntax_conceal = 0
+
+command! -nargs=? Jq call s:Jq(<f-args>)
+function! s:Jq(...)
+    if 0 == a:0
+        let l:arg = "."
+    else
+        let l:arg = a:1
+    endif
+    execute "%! jq \"" . l:arg . "\""
+endfunction
 
 " ---- encode setting ----
 set encoding=utf-8
