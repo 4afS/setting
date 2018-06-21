@@ -1,9 +1,0 @@
-PROGRAM =
-OBJS    = .o
-SRCS    = $(OBJS:%.o=%.c)
-	CC      = gcc
-	CFLAGS  = -g -Wall
-	LFLAGS  =
-
-$(PROGRAM):$(OBJS)
-	        $(CC) $(CFLAGS) $(LFLAGS) -o $(PROGRAM) $(OBJS) $(LFLAGS)
