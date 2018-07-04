@@ -4,15 +4,15 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/home/right/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=/home/tia/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/home/right/.cache/dein')
-    call dein#begin('/home/right/.cache/dein')
+if dein#load_state('/home/tia/.cache/dein')
+    call dein#begin('/home/tia/.cache/dein')
 
 " Let dein manage dein
 " Required:
-    call dein#add('/home/right/.cache/dein/repos/github.com/Shougo/dein.vim')
+    call dein#add('/home/tia/.cache/dein/repos/github.com/Shougo/dein.vim')
 
 " Add or remove your plugins here:
     " deoplete related
@@ -20,7 +20,6 @@ if dein#load_state('/home/right/.cache/dein')
     call dein#add('Shougo/neosnippet.vim')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('Shougo/neco-syntax')
-    call dein#add('Shougo/unite.vim')
     " if it is not nvim
     if !has('nvim')
         call dein#add('roxma/nvim-yarp')
@@ -47,10 +46,7 @@ if dein#load_state('/home/right/.cache/dein')
     call dein#add('tomtom/tcomment_vim')
     " template
     call dein#add('mattn/sonictemplate-vim')
-    " Haskell plugins
-    call dein#add('kana/vim-filetype-haskell')
-    call dein#add('ujihisa/neco-ghc')
-    
+
 " Required:
     call dein#end()
     call dein#save_state()
@@ -66,11 +62,9 @@ endif
 
 "End dein Scripts-------------------------
 
-" file path
-let $PATH = $PATH . ':' . expand('~/.cabal/bin')
-
 " ---- enable plugins ----
 let g:deoplete#enable_at_startup = 1
+let g:neosnippet#snippets_directory = '~/.cache/dein/repos/github.com/Shougo/neosnippet-snippets/neosnippets/snippets/'
 
 " ---- Theme ----
 set t_Co=256
@@ -162,9 +156,13 @@ let g:quickrun_config = {
 \   "_" : {
 \       "runner" : "vimproc",
 \       "runner/vimproc/updatetime" : 10,
-\       "outputter/buffer/split" : ":botright 5sp",
+\       "outputter/buffer/split" : ":botright 8sp",
 \       "utputter/error/success" : "buffer",
 \       "outputter/error/error" : "buffer",
+\   },
+\
+\   "python" : {
+\       "command" : "python3"
 \   }
 \}
 
