@@ -36,6 +36,7 @@ if dein#load_state('/home/right/.cache/dein')
     call dein#add('elzr/vim-json')
     " syntax highlight for any language
     call dein#add('derekwyatt/vim-scala')
+    call dein#add('neovimhaskell/haskell-vim')
     " run program on vim
     call dein#add('thinca/vim-quickrun')
     call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
@@ -50,6 +51,7 @@ if dein#load_state('/home/right/.cache/dein')
     " Haskell plugins
     call dein#add('kana/vim-filetype-haskell')
     call dein#add('ujihisa/neco-ghc')
+    call dein#add('eagletmt/ghcmod-vim')
     
 " Required:
     call dein#end()
@@ -71,6 +73,15 @@ let $PATH = $PATH . ':' . expand('~/.cabal/bin')
 
 " ---- enable plugins ----
 let g:deoplete#enable_at_startup = 1
+
+" highlight for Haskell
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
 " ---- Theme ----
 set t_Co=256
