@@ -60,6 +60,7 @@ endif
 
 " Required:
 syntax enable
+filetype plugin indent on
 
 " If you want to install not installed plugins on startup.
 if dein#check_install()
@@ -69,12 +70,13 @@ endif
 "End dein Scripts-------------------------
 
 " file path
-let $PATH = $PATH . ':' . expand('~/.cabal/bin')
+let $PATH = $PATH . ':' . expand('~/.cabal/bin') . ':' . expand('~/.local/bin')
 
 " ---- enable plugins ----
 let g:deoplete#enable_at_startup = 1
 
-" highlight for Haskell
+" ---- Haskell setting ----
+" syntax
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
 let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
@@ -82,6 +84,8 @@ let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
 let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
 let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+" indent
+let g:haskell_indent_let = 4
 
 " ---- Theme ----
 set t_Co=256
@@ -95,13 +99,8 @@ let g:hybrid_reduced_contrast = 1
 " ---- template setting ----
 let g:sonictemplate_vim_template_dir = ['~/.vim/template']
 
-" ---- language setting ----
-au BufNewFile,BufRead *.scala setf scala
-autocmd BufRead,BufNewFile *.scala setfiletype scala
-
 " ---- display setting ----
 set number 
-"set cursorline
 set title 
 set showmatch 
 set guioptions-=m
@@ -160,8 +159,9 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
     \: "\<TAB>"
 
 " ---- key-mappings ----
-nnoremap <C-k> :write<CR>:QuickRun<CR>
+nnoremap <C-k> :write<CR>:QuickRun<CR><C-w>j
 nnoremap <C-n> :NERDTreeToggle<CR>
+autocmd BufRead,BufNewFile *.hs nnoremap <C-h> :QuickRun hlint<CR><C-w>j
 
 " For snippet_complete marker.
 if has('conceal')
@@ -173,7 +173,7 @@ let g:quickrun_config = {
 \   "_" : {
 \       "runner" : "vimproc",
 \       "runner/vimproc/updatetime" : 10,
-\       "outputter/buffer/split" : ":botright 5sp",
+\       "outputter/buffer/split" : ":botright 8sp",
 \       "utputter/error/success" : "buffer",
 \       "outputter/error/error" : "buffer",
 \   },
