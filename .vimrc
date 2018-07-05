@@ -176,6 +176,17 @@ let g:quickrun_config = {
 \       "outputter/buffer/split" : ":botright 5sp",
 \       "utputter/error/success" : "buffer",
 \       "outputter/error/error" : "buffer",
+\   },
+\
+\   "python" : {
+\       "command" : "python3",
+\       "exec" : "%c %s"
+\   },
+\   
+\   "haskell" : {
+\       "command" : "stack",
+\       "cmdopt" : "runghc",
+\       "exec" : "%c %o %s"    
 \   }
 \}
 
