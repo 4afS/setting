@@ -1,6 +1,6 @@
 ## TO DO if you start setup
 - HAVE TO DO when ubuntu is installed 
-    - `sudo apt update && apt upgrade`
+    - `sudo apt update` and `sudo apt upgrade`
 
 - enter `export PS1='\u@\h:\W\$ '` to .bashrc at the LAST line
 
