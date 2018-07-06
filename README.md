@@ -31,3 +31,12 @@
     - install packages
         - `stack install ghc-mod`
         - `stack install hlint`
+
+## .sh FIles Details
+- cpFlsH.sh and cpFlsS.sh
+    - copy config files to **H**ome frome **S**etting or to **S**etting from **H**ome
+- cpTempH.sh and cpTempS.sh
+    - copy template files to **H**ome frome **S**etting or to **S**etting from **H**ome
+- instDeinVim.sh
+    - install dein.vim
+
