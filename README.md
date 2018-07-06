@@ -13,7 +13,7 @@
     - if the version of Vim 8.0 or above or NeoVim
         - run `source install_deinvim.sh`
 
-- build an environment for development with ***********Python3**
+- build an environment for development with **Python3**
     - if python3 is not installed or the version of python3 is less than 3.5
         - run `sudo apt install -y python3.6`
     - if pip3 is not installed or the version of pip3 is less than 9.0
