@@ -35,8 +35,10 @@
 ## .sh FIles Details
 - cpCnfFlsH.sh and cpCnfFlsS.sh
     - copy config files frome **s**etting/ to **h**ome/user/ or from **h**ome/user/ to **s**etting/ 
+
 - cpTempH.sh and cpTempS.sh
     - copy template files frome **s**etting/ to **h**ome/user/ or from **h**ome/user/ to **s**etting/ 
+
 - instDeinVim.sh
     - install dein.vim
 
