@@ -33,7 +33,7 @@
         - `stack install hlint`
 
 ## .sh FIles Details
-- cpFlsH.sh and cpFlsS.sh
+- cpCnfFlsH.sh and cpCnfFlsS.sh
     - copy config files frome **s**etting/ to **h**ome/user/ or from **h**ome/user/ to **s**etting/ 
 - cpTempH.sh and cpTempS.sh
     - copy template files frome **s**etting/ to **h**ome/user/ or from **h**ome/user/ to **s**etting/ 
