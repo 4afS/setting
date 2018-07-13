@@ -4,15 +4,15 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/home/right/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/home/right/.cache/dein')
-    call dein#begin('/home/right/.cache/dein')
+if dein#load_state('~/.cache/dein')
+    call dein#begin('~/.cache/dein')
 
 " Let dein manage dein
 " Required:
-    call dein#add('/home/right/.cache/dein/repos/github.com/Shougo/dein.vim')
+    call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
 " Add or remove your plugins here:
     " deoplete related
@@ -103,6 +103,7 @@ let g:sonictemplate_vim_template_dir = ['~/.vim/template']
 set number 
 set title 
 set showmatch 
+" set cursorline 
 set guioptions-=m
 
 " ---- tab setting ----
