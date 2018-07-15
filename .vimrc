@@ -86,6 +86,12 @@ let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 " indent
 let g:haskell_indent_let = 4
+let g:haskell_indent_if = 3
+let g:haskell_indent_let = 4
+let g:haskell_indent_where = 6
+let g:haskell_indent_do = 3
+let g:haskell_indent_guard = 2
+let g:haskell_indent_in = 1
 
 " ---- Theme ----
 set t_Co=256
