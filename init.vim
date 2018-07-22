@@ -42,16 +42,11 @@ if dein#load_state('~/.cache/dein')
     call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
     " complete (), {}, etc
     call dein#add('cohama/lexima.vim')
-    " Tree
     call dein#add('scrooloose/nerdtree')
-    " comment out
     call dein#add('tomtom/tcomment_vim')
-    " template
-    call dein#add('mattn/sonictemplate-vim')
     " Haskell plugins
     call dein#add('kana/vim-filetype-haskell')
     call dein#add('ujihisa/neco-ghc')
-    call dein#add('eagletmt/ghcmod-vim')
     
 " Required:
     call dein#end()
@@ -70,7 +65,7 @@ endif
 "End dein Scripts-------------------------
 
 " file path
-let $PATH = $PATH . ':' . expand('~/.cabal/bin') . ':' . expand('~/.local/bin')
+let $PATH = $PATH . ':' . expand('~/.local/bin')
 
 " ---- enable plugins ----
 let g:deoplete#enable_at_startup = 1
