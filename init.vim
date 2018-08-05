@@ -41,13 +41,24 @@ if dein#load_state('~/.cache/dein')
     call dein#add('thinca/vim-quickrun')
     call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
     " complete (), {}, etc
-    call dein#add('cohama/lexima.vim')
-    call dein#add('scrooloose/nerdtree')
-    call dein#add('tomtom/tcomment_vim')
+    call dein#add('tpope/vim-surround')
     " Haskell plugins
     call dein#add('kana/vim-filetype-haskell')
     call dein#add('ujihisa/neco-ghc')
-    
+    " highlight replace 
+    call dein#add('osyo-manga/vim-over')
+    " multi coursors 
+    call dein#add('terryma/vim-multiple-cursors')
+    " show file free
+    call dein#add('scrooloose/nerdtree')
+    " to comment
+    call dein#add('tomtom/tcomment_vim')
+    " Add UNIX shell commands
+    call dein#add('tpope/vim-eunuch')
+    " Asynchronous Lint Engine
+    call dein#add('w0rp/ale')
+
+
 " Required:
     call dein#end()
     call dein#save_state()
@@ -69,6 +80,7 @@ let $PATH = $PATH . ':' . expand('~/.local/bin')
 
 " ---- enable plugins ----
 let g:deoplete#enable_at_startup = 1
+let g:ale_completion_enabled = 1
 
 " ---- Haskell setting ----
 " syntax
@@ -104,8 +116,9 @@ let g:sonictemplate_vim_template_dir = ['~/.vim/template']
 set number 
 set title 
 set showmatch 
-" set cursorline 
+set cursorline 
 set guioptions-=m
+set inccommand=split
 
 " ---- tab setting ----
 set expandtab

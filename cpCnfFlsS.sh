@@ -1,4 +1,4 @@
 cp ~/.vimrc .
-cp ./config/nvim .
+cp ~/.config/nvim/init.vim .
 cp ~/.tmux.conf .
 
