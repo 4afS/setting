@@ -231,7 +231,7 @@ function! s:Jq(...)
 endfunction
 
 " import command setting file ----
-source ~/.vim/.command.vim
+command! Hoogle terminal links2 https://www.haskell.org/hoogle
 
 " ---- encode setting ----
 set encoding=utf-8
