@@ -16,7 +16,7 @@ if dein#load_state('~/.cache/dein')
 
 " Add or remove your plugins here:
     " deoplete related
-    call dein#add('Shougo/deoplete.nvim')
+    call dein#add('Shougo/deoplete.nvim', {'do' : ':UpdateRemotePlugins'})
     call dein#add('Shougo/neosnippet.vim')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('Shougo/neco-syntax')
