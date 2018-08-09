@@ -21,7 +21,7 @@ if dein#load_state('~/.cache/dein')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('Shougo/neco-syntax')
     call dein#add('Shougo/unite.vim')
-    " if it is not nvim
+:   " if it is not nvim
     if !has('nvim')
         call dein#add('roxma/nvim-yarp')
         call dein#add('roxma/vim-hug-neovim-rpc')
@@ -55,7 +55,6 @@ if dein#load_state('~/.cache/dein')
     call dein#add('tpope/vim-eunuch')
     " Asynchronous Lint Engine
     call dein#add('w0rp/ale')
-
 
 " Required:
     call dein#end()
@@ -178,6 +177,7 @@ nnoremap <C-k> :QuickRun<CR><C-w>j
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <Space>o :TComment<CR>
 vnoremap <Space>o :TComment<CR>
+tnoremap <C-n> <C-\><C-N>
 
 nnoremap <Space>s :vsplit<CR>
 nnoremap <Space>c :close<CR>
@@ -229,6 +229,9 @@ function! s:Jq(...)
     endif
     execute "%! jq \"" . l:arg . "\""
 endfunction
+
+" import command setting file ----
+source ~/.vim/.command.vim
 
 " ---- encode setting ----
 set encoding=utf-8
