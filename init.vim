@@ -1,4 +1,4 @@
-"dein Scripts-----------------------------
+" dein Scripts-----------------------------
 if &compatible
     set nocompatible               " Be iMproved
 endif
@@ -47,8 +47,6 @@ if dein#load_state('~/.cache/dein')
     call dein#add('ujihisa/neco-ghc')
     " highlight replace 
     call dein#add('osyo-manga/vim-over')
-    " multi coursors 
-    call dein#add('terryma/vim-multiple-cursors')
     " show file free
     call dein#add('scrooloose/nerdtree')
     " to comment
@@ -103,8 +101,9 @@ let g:haskell_indent_in = 1
 " ---- Theme ----
 set t_Co=256
 syntax on
-set t_ut=
 set background=dark
+autocmd ColorScheme * highlight Normal ctermbg=none
+autocmd ColorScheme * highlight LineNr ctermbg=none
 colorscheme hybrid 
 let g:hybrid_custom_term_colors = 1
 let g:hybrid_reduced_contrast = 1
@@ -117,6 +116,7 @@ set number
 set title 
 set showmatch 
 set cursorline 
+hi clear CursorLine
 set guioptions-=m
 set inccommand=split
 
@@ -174,9 +174,19 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
     \: "\<TAB>"
 
 " ---- key-mappings ----
-nnoremap <C-k> :write<CR>:QuickRun<CR><C-w>j
+nnoremap <C-k> :QuickRun<CR><C-w>j
 nnoremap <C-n> :NERDTreeToggle<CR>
-autocmd BufRead,BufNewFile *.hs nnoremap <C-h> :QuickRun hlint<CR><C-w>j
+nnoremap <Space>o :TComment<CR>
+vnoremap <Space>o :TComment<CR>
+
+nnoremap <Space>s :vsplit<CR>
+nnoremap <Space>c :close<CR>
+nnoremap <Space>j <C-w>j
+nnoremap <Space>k <C-w>k
+nnoremap <Space>l <C-w>l
+nnoremap <Space>h <C-w>h
+
+let g:tcomment_maps = 0
 
 " For snippet_complete marker.
 if has('conceal')
@@ -188,9 +198,9 @@ let g:quickrun_config = {
 \   "_" : {
 \       "runner" : "vimproc",
 \       "runner/vimproc/updatetime" : 10,
-\       "outputter/buffer/split" : ":botright 8sp",
+\       "outputter/buffer/split" : ":botright 10sp",
 \       "utputter/error/success" : "buffer",
-\       "outputter/error/error" : "buffer",
+\       "outputter/error/error" : "buffer"
 \   },
 \
 \   "python" : {
@@ -206,6 +216,7 @@ let g:quickrun_config = {
 \}
 
 
+:
 " ---- json setting ---
 let g:vim_json_syntax_conceal = 0
 
