@@ -230,8 +230,16 @@ function! s:Jq(...)
     execute "%! jq \"" . l:arg . "\""
 endfunction
 
-" import command setting file ----
-command! Hoogle terminal links2 https://www.haskell.org/hoogle
+" ---- Search with Hoogle from command :Hoogle ... ----
+command! -nargs=? Hoogle call s:SearchWithHoogle(<f-args>)
+function! s:SearchWithHoogle(...)
+    if a:0 > 0
+        let keywords = "/?hoogle=" . a:1
+    else
+        let keywords = ""
+    endif
+    execute "terminal links2 https://www.haskell.org/hoogle" . keywords
+endfunction
 
 " ---- encode setting ----
 set encoding=utf-8
