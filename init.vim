@@ -188,6 +188,9 @@ nnoremap <Space>h <C-w>h
 
 let g:tcomment_maps = 0
 
+" ---- terminal ----
+set shell=bash
+
 " For snippet_complete marker.
 if has('conceal')
     set conceallevel=2 concealcursor=i
@@ -215,8 +218,6 @@ let g:quickrun_config = {
 \   }
 \}
 
-
-:
 " ---- json setting ---
 let g:vim_json_syntax_conceal = 0
 
