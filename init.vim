@@ -56,6 +56,10 @@ if dein#load_state('~/.cache/dein')
     call dein#add('tpope/vim-eunuch')
     " Asynchronous Lint Engine
     call dein#add('w0rp/ale')
+    " complement paretheses
+    call dein#add('cohama/lexima.vim')
+    " color paretheses
+    call dein#add('kien/rainbow_parentheses.vim')
 
 " Required:
     call dein#end()
@@ -80,7 +84,7 @@ let $PATH = $PATH . ':' . expand('~/.local/bin')
 let g:deoplete#enable_at_startup = 1
 let g:ale_completion_enabled = 1
 
-" ---- Haskell setting ----
+" ---- Haskell  ----
 " syntax
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
@@ -108,10 +112,10 @@ colorscheme hybrid
 let g:hybrid_custom_term_colors = 1
 let g:hybrid_reduced_contrast = 1
 
-" ---- template setting ----
+" ---- template  ----
 let g:sonictemplate_vim_template_dir = ['~/.vim/template']
 
-" ---- display setting ----
+" ---- display  ----
 set number 
 set title 
 set cursorline 
@@ -120,7 +124,7 @@ set guioptions-=m
 set inccommand=split
 let loaded_matchparen=1
 
-" ---- tab setting ----
+" ---- tab  ----
 set expandtab
 set tabstop=4 
 set shiftwidth=4
@@ -128,23 +132,23 @@ set smartindent
 set autoindent
 set softtabstop=4
 
-" ---- input setting ----
+" ---- input  ----
 set backspace=indent,eol,start
 
-" ---- statusline setting ----
+" ---- statusline  ----
 set laststatus=2
 set noshowmode
 
-" ---- search setting ----
+" ---- search  ----
 set ignorecase 
 set smartcase 
 set hlsearch
 
-" ---- command setting ----
+" ---- command  ----
 set wildmenu
 set history=5000
 
-" ---- autoindent setting ----
+" ---- autoindent  ----
 if &term =~ "xterm"
     let &t_SI .= "\e[?2004h"
     let &t_EI .= "\e[?2004l"
@@ -197,7 +201,7 @@ if has('conceal')
     set conceallevel=2 concealcursor=i
 endif
 
-" ---- quickrun setting ----
+" ---- quickrun  ----
 let g:quickrun_config = {
 \   "_" : {
 \       "runner" : "vimproc",
@@ -219,7 +223,7 @@ let g:quickrun_config = {
 \   }
 \}
 
-" ---- json setting ---
+" ---- json  ---
 let g:vim_json_syntax_conceal = 0
 
 command! -nargs=? Jq call s:Jq(<f-args>)
@@ -243,12 +247,20 @@ function! s:SearchWithHoogle(...)
     execute "terminal links2 https://www.haskell.org/hoogle" . keywords
 endfunction
 
-" ---- ale setting ----
+" ---- ale  ----
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_info_str = 'I'
 let g:ale_echo_msg_warning_str = 'W'
 
-" ---- encode setting ----
+" --- rainbow paretheses ----
+let g:rbpt_max=6
+let g:rbpt_loadcmd_toggle=0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+" ---- encode  ----
 set encoding=utf-8
 scriptencoding utf-8
 set fileencoding=utf-8
