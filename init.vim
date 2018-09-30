@@ -37,6 +37,7 @@ if dein#load_state('~/.cache/dein')
     " syntax highlight for any language
     call dein#add('derekwyatt/vim-scala')
     call dein#add('neovimhaskell/haskell-vim')
+    call dein#add('udalov/kotlin-vim')
     " run program on vim
     call dein#add('thinca/vim-quickrun')
     call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
