@@ -113,11 +113,11 @@ let g:sonictemplate_vim_template_dir = ['~/.vim/template']
 " ---- display setting ----
 set number 
 set title 
-set showmatch 
 set cursorline 
 hi clear CursorLine
 set guioptions-=m
 set inccommand=split
+let loaded_matchparen=1
 
 " ---- tab setting ----
 set expandtab
