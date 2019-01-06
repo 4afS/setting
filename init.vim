@@ -17,8 +17,6 @@ if dein#load_state('~/.cache/dein')
 " Add or remove your plugins here:
     " deoplete related
     call dein#add('Shougo/deoplete.nvim', {'do' : ':UpdateRemotePlugins'})
-    call dein#add('Shougo/neosnippet.vim')
-    call dein#add('Shougo/neosnippet-snippets')
     call dein#add('Shougo/neco-syntax')
     call dein#add('Shougo/unite.vim')
 :   " if it is not nvim
@@ -45,7 +43,6 @@ if dein#load_state('~/.cache/dein')
     call dein#add('tpope/vim-surround')
     " Haskell plugins
     call dein#add('kana/vim-filetype-haskell')
-    call dein#add('ujihisa/neco-ghc')
     " highlight replace 
     call dein#add('osyo-manga/vim-over')
     " show file free
@@ -252,15 +249,5 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_info_str = 'I'
 let g:ale_echo_msg_warning_str = 'W'
 
-" --- rainbow paretheses ----
-let g:rbpt_max=6
-let g:rbpt_loadcmd_toggle=0
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-
 " ---- encode  ----
 set encoding=utf-8
-scriptencoding utf-8
-set fileencoding=utf-8
