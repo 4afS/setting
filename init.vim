@@ -55,8 +55,6 @@ if dein#load_state('~/.cache/dein')
     call dein#add('w0rp/ale')
     " complement paretheses
     call dein#add('cohama/lexima.vim')
-    " color paretheses
-    call dein#add('kien/rainbow_parentheses.vim')
 
 " Required:
     call dein#end()
@@ -243,11 +241,6 @@ function! s:SearchWithHoogle(...)
     endif
     execute "terminal links2 https://www.haskell.org/hoogle" . keywords
 endfunction
-
-" ---- ale  ----
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_info_str = 'I'
-let g:ale_echo_msg_warning_str = 'W'
 
 " ---- encode  ----
 set encoding=utf-8
