@@ -3,7 +3,7 @@ if &compatible
     set nocompatible               " Be iMproved
 endif
 
-" Required:
+
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
@@ -17,6 +17,8 @@ if dein#load_state('~/.cache/dein')
 " Add or remove your plugins here:
     " deoplete related
     call dein#add('Shougo/deoplete.nvim', {'do' : ':UpdateRemotePlugins'})
+    call dein#add('Shougo/neosnippet.vim')
+    call dein#add('Shougo/neosnippet-snippets')
     call dein#add('Shougo/neco-syntax')
     call dein#add('Shougo/unite.vim')
 :   " if it is not nvim
