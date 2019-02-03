@@ -1,2 +1,2 @@
-cp $HOME/.config/nvim/init.vim
-cp $HOME/.tmux.conf .
+cp $HOME/.config/nvim/init.vim config/
+cp $HOME/.tmux.conf config/
