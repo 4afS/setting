@@ -30,6 +30,7 @@ if dein#load_state('~/.cache/dein')
     call dein#add('w0ng/vim-hybrid')
     " status line
     call dein#add('itchyny/lightline.vim')
+    call dein#add('maximbaz/lightline-ale')
     " indent line
     call dein#add('Yggdroot/indentLine')
     " for .json files
@@ -38,6 +39,7 @@ if dein#load_state('~/.cache/dein')
     call dein#add('derekwyatt/vim-scala')
     call dein#add('neovimhaskell/haskell-vim')
     call dein#add('udalov/kotlin-vim')
+    call dein#add('leafgarland/typescript-vim')
     " run program on vim
     call dein#add('thinca/vim-quickrun')
     call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
@@ -99,6 +101,12 @@ let g:haskell_indent_do = 3
 let g:haskell_indent_guard = 2
 let g:haskell_indent_in = 1
 
+" ---- filetype ----
+
+" ---- ALE ----
+let g:ale_echo_msg_format = '[%linter%] %s'
+let g:ale_statusline_format = ['E%d', 'W%d', 'ok']
+
 " ---- Theme ----
 set t_Co=256
 syntax on
@@ -109,25 +117,26 @@ colorscheme hybrid
 let g:hybrid_custom_term_colors = 1
 let g:hybrid_reduced_contrast = 1
 
+" ---- lightline ----
+
 " ---- template  ----
 let g:sonictemplate_vim_template_dir = ['~/.vim/template']
 
 " ---- display  ----
 set number 
 set title 
-set cursorline 
-hi clear CursorLine
+set nocursorline 
 set guioptions-=m
 set inccommand=split
 let loaded_matchparen=1
 
 " ---- tab  ----
 set expandtab
-set tabstop=4 
-set shiftwidth=4
+set tabstop=2 
+set shiftwidth=2
 set smartindent
 set autoindent
-set softtabstop=4
+set softtabstop=2
 
 " ---- input  ----
 set backspace=indent,eol,start
