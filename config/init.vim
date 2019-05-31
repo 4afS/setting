@@ -31,6 +31,7 @@ if dein#load_state('~/.cache/dein')
     call dein#add('kristijanhusak/vim-hybrid-material')
     " status line
     call dein#add('itchyny/lightline.vim')
+    call dein#add('maximbaz/lightline-ale')
     " indent line
     call dein#add('Yggdroot/indentLine')
     " for .json files
@@ -39,6 +40,7 @@ if dein#load_state('~/.cache/dein')
     call dein#add('derekwyatt/vim-scala')
     call dein#add('neovimhaskell/haskell-vim')
     call dein#add('udalov/kotlin-vim')
+    call dein#add('leafgarland/typescript-vim')
     " run program on vim
     call dein#add('thinca/vim-quickrun')
     call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
@@ -139,6 +141,11 @@ hi link ALEError Error
 hi Warning term=underline cterm=underline ctermfg=Yellow gui=undercurl guisp=Gold
 hi link ALEWarning Warning
 hi link ALEInfo SpellCap
+" ---- filetype ----
+
+" ---- ALE ----
+let g:ale_echo_msg_format = '[%linter%] %s'
+let g:ale_statusline_format = ['E%d', 'W%d', 'ok']
 
 " ---- Theme ----
 set t_Co=256
@@ -152,6 +159,8 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
+" ---- lightline ----
+
 " ---- template  ----
 let g:sonictemplate_vim_template_dir = ['~/.vim/template']
 autocmd BufNewFile *.c 0r $HOME/Program/C2/template.c
@@ -159,19 +168,18 @@ autocmd BufNewFile *.c 0r $HOME/Program/C2/template.c
 " ---- display  ----
 set number 
 set title 
-set cursorline 
-hi clear CursorLine
+set nocursorline 
 set guioptions-=m
 set inccommand=split
 let loaded_matchparen=1
 
 " ---- tab  ----
 set expandtab
-set tabstop=4 
-set shiftwidth=4
+set tabstop=2 
+set shiftwidth=2
 set smartindent
 set autoindent
-set softtabstop=4
+set softtabstop=2
 
 " ---- input  ----
 set backspace=indent,eol,start
