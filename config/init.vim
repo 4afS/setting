@@ -21,13 +21,14 @@ if dein#load_state('~/.cache/dein')
     call dein#add('Shougo/neosnippet-snippets')
     call dein#add('Shougo/neco-syntax')
     call dein#add('Shougo/unite.vim')
-:   " if it is not nvim
+    " if it is not nvim
     if !has('nvim')
         call dein#add('roxma/nvim-yarp')
         call dein#add('roxma/vim-hug-neovim-rpc')
     endif
     " color scheme
-    call dein#add('w0ng/vim-hybrid')
+    " call dein#add('w0ng/vim-hybrid')
+    call dein#add('kristijanhusak/vim-hybrid-material')
     " status line
     call dein#add('itchyny/lightline.vim')
     " indent line
@@ -53,10 +54,14 @@ if dein#load_state('~/.cache/dein')
     call dein#add('tomtom/tcomment_vim')
     " Add UNIX shell commands
     call dein#add('tpope/vim-eunuch')
-    " Asynchronous Lint Engine
-    call dein#add('w0rp/ale')
     " complement paretheses
     call dein#add('cohama/lexima.vim')
+    " HIE
+    call dein#add('autozimu/LanguageClient-neovim', {
+      \ 'rev': 'next',
+      \ 'build': 'bash install.sh',
+      \ })
+    call dein#add('junegunn/fzf')
 
 " Required:
     call dein#end()
@@ -99,18 +104,57 @@ let g:haskell_indent_do = 3
 let g:haskell_indent_guard = 2
 let g:haskell_indent_in = 1
 
+" HIE
+set hidden
+
+let g:LanguageClient_rootMakers = {
+  \ 'haskell': ['stack.yaml']
+  \ } 
+let g:LanguageClient_serverCommands = {
+  \ 'haskell': ['hie-wrapper'],
+  \ 'c': ['clangd'],
+  \ 'python':['pyls']
+  \ }
+
+" LanguageClientの機能のショートカットを登録
+function LC_maps()
+  if has_key(g:LanguageClient_serverCommands, &filetype)
+    nnoremap <silent> <Alt>r :call LanguageClient_contextMenu()<CR>
+    map <silent> <Leader>lt :call LanguageClient#textDocument_hover()<CR>
+    map <silent> <Leader>lg :call LanguageClient#textDocument_definition()<CR>
+    map <silent> <Leader>lr :call LanguageClient#textDocument_rename()<CR>
+    map <silent> <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
+    map <silent> <Leader>lb :call LanguageClient#textDocument_references()<CR>
+    map <silent> <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
+    map <silent> <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
+  endif
+endfunction
+
+augroup LanguageClientKeyconfig
+  autocmd!
+  autocmd Filetype * call LC_maps()
+augroup END
+
+hi link ALEError Error
+hi Warning term=underline cterm=underline ctermfg=Yellow gui=undercurl guisp=Gold
+hi link ALEWarning Warning
+hi link ALEInfo SpellCap
+
 " ---- Theme ----
 set t_Co=256
 syntax on
 set background=dark
 autocmd ColorScheme * highlight Normal ctermbg=none
 autocmd ColorScheme * highlight LineNr ctermbg=none
-colorscheme hybrid 
-let g:hybrid_custom_term_colors = 1
-let g:hybrid_reduced_contrast = 1
+colorscheme hybrid_material
+
+if (has("termguicolors"))
+  set termguicolors
+endif
 
 " ---- template  ----
 let g:sonictemplate_vim_template_dir = ['~/.vim/template']
+autocmd BufNewFile *.c 0r $HOME/Program/C2/template.c
 
 " ---- display  ----
 set number 
@@ -140,6 +184,7 @@ set noshowmode
 set ignorecase 
 set smartcase 
 set hlsearch
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
 " ---- command  ----
 set wildmenu
@@ -175,18 +220,30 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
     \: "\<TAB>"
 
 " ---- key-mappings ----
+nnoremap ; :
+
 nnoremap <C-k> :QuickRun<CR><C-w>j
+
 nnoremap <C-n> :NERDTreeToggle<CR>
+
 nnoremap <Space>o :TComment<CR>
 vnoremap <Space>o :TComment<CR>
-tnoremap <C-n> <C-\><C-N>
 
+" ESC in terminal
+tnoremap <ESC> <C-\><C-N>
+
+" split
 nnoremap <Space>s :vsplit<CR>
 nnoremap <Space>c :close<CR>
 nnoremap <Space>j <C-w>j
 nnoremap <Space>k <C-w>k
 nnoremap <Space>l <C-w>l
 nnoremap <Space>h <C-w>h
+
+" tab
+nnoremap <Space>t :tabnew<CR>
+nnoremap <C-h> gT
+nnoremap <C-l> gt
 
 let g:tcomment_maps = 0
 
