@@ -1,19 +1,17 @@
-" Plug
-" Automatic installation
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+" automatic installation
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" Required:
+" Plug
 call plug#begin('~/.vim/plugged')
   " for Vim
   if !has('nvim')
       Plug 'roxma/nvim-yarp'
       Plug 'roxma/vim-hug-neovim-rpc'
   endif
-  " Plug help
-  Plug 'junegunn/vim-plug'
   " deoplete
   Plug 'Shougo/deoplete.nvim', {'do' : ':UpdateRemotePlugins'}
   Plug 'Shougo/neosnippet.vim'
@@ -29,7 +27,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'Yggdroot/indentLine'
   " for .json files
   " syntax highlight
-  Plug 'derekwyatt/vim-scala', {'for': ['kotlin']}
+  Plug 'derekwyatt/vim-scala', {'for': ['scala']}
   Plug 'udalov/kotlin-vim', {'for': ['kotlin']}
   Plug 'leafgarland/typescript-vim', {'for': ['typescript']}
   Plug 'neovimhaskell/haskell-vim', {'for': ['haskell']}
@@ -52,8 +50,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'cohama/lexima.vim'
   " language server
   Plug 'autozimu/LanguageClient-neovim', {
-    \ 'rev': 'next',
-    \ 'build': 'bash install.sh',
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh'
     \ }
   Plug 'junegunn/fzf'
 
