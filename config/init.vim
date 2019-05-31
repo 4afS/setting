@@ -1,87 +1,64 @@
-" dein Scripts-----------------------------
-if &compatible
-    set nocompatible               " Be iMproved
-endif
-
-
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
-
-" Required:
-if dein#load_state('~/.cache/dein')
-    call dein#begin('~/.cache/dein')
-
-" Let dein manage dein
-" Required:
-    call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-
-" Add or remove your plugins here:
-    " deoplete related
-    call dein#add('Shougo/deoplete.nvim', {'do' : ':UpdateRemotePlugins'})
-    call dein#add('Shougo/neosnippet.vim')
-    call dein#add('Shougo/neosnippet-snippets')
-    call dein#add('Shougo/neco-syntax')
-    call dein#add('Shougo/unite.vim')
-    " if it is not nvim
-    if !has('nvim')
-        call dein#add('roxma/nvim-yarp')
-        call dein#add('roxma/vim-hug-neovim-rpc')
-    endif
-    " color scheme
-    " call dein#add('w0ng/vim-hybrid')
-    call dein#add('kristijanhusak/vim-hybrid-material')
-    " status line
-    call dein#add('itchyny/lightline.vim')
-    call dein#add('maximbaz/lightline-ale')
-    " indent line
-    call dein#add('Yggdroot/indentLine')
-    " for .json files
-    call dein#add('elzr/vim-json')
-    " syntax highlight for any language
-    call dein#add('derekwyatt/vim-scala')
-    call dein#add('neovimhaskell/haskell-vim')
-    call dein#add('udalov/kotlin-vim')
-    call dein#add('leafgarland/typescript-vim')
-    " run program on vim
-    call dein#add('thinca/vim-quickrun')
-    call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
-    " complete (), {}, etc
-    call dein#add('tpope/vim-surround')
-    " Haskell plugins
-    call dein#add('kana/vim-filetype-haskell')
-    " highlight replace 
-    call dein#add('osyo-manga/vim-over')
-    " show file free
-    call dein#add('scrooloose/nerdtree')
-    " to comment
-    call dein#add('tomtom/tcomment_vim')
-    " Add UNIX shell commands
-    call dein#add('tpope/vim-eunuch')
-    " complement paretheses
-    call dein#add('cohama/lexima.vim')
-    " HIE
-    call dein#add('autozimu/LanguageClient-neovim', {
-      \ 'rev': 'next',
-      \ 'build': 'bash install.sh',
-      \ })
-    call dein#add('junegunn/fzf')
-
-" Required:
-    call dein#end()
-    call dein#save_state()
+" Plug
+" Automatic installation
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
 " Required:
-syntax enable
-filetype plugin indent on
+call plug#begin('~/.vim/plugged')
+  " for Vim
+  if !has('nvim')
+      Plug 'roxma/nvim-yarp'
+      Plug 'roxma/vim-hug-neovim-rpc'
+  endif
+  " Plug help
+  Plug 'junegunn/vim-plug'
+  " deoplete
+  Plug 'Shougo/deoplete.nvim', {'do' : ':UpdateRemotePlugins'}
+  Plug 'Shougo/neosnippet.vim'
+  Plug 'Shougo/neosnippet-snippets'
+  Plug 'Shougo/neco-syntax'
+  Plug 'Shougo/unite.vim'
+  " color scheme
+  Plug 'kristijanhusak/vim-hybrid-material'
+  " status line
+  Plug 'itchyny/lightline.vim'
+  Plug 'maximbaz/lightline-ale'
+  " indent line
+  Plug 'Yggdroot/indentLine'
+  " for .json files
+  " syntax highlight
+  Plug 'derekwyatt/vim-scala', {'for': ['kotlin']}
+  Plug 'udalov/kotlin-vim', {'for': ['kotlin']}
+  Plug 'leafgarland/typescript-vim', {'for': ['typescript']}
+  Plug 'neovimhaskell/haskell-vim', {'for': ['haskell']}
+  Plug 'kana/vim-filetype-haskell', {'for': ['haskell']}
+  Plug 'elzr/vim-json', {'for': ['json']}
+  " quickrun
+  Plug 'thinca/vim-quickrun'
+  Plug 'Shougo/vimproc.vim', {'build' : 'make'}
+  " complete (), {}, etc
+  Plug 'tpope/vim-surround'
+  " highlight words
+  Plug 'osyo-manga/vim-over'
+  " directory tree
+  Plug 'scrooloose/nerdtree'
+  " comment out
+  Plug 'tomtom/tcomment_vim'
+  " shell commands
+  Plug 'tpope/vim-eunuch'
+  " complement paretheses
+  Plug 'cohama/lexima.vim'
+  " language server
+  Plug 'autozimu/LanguageClient-neovim', {
+    \ 'rev': 'next',
+    \ 'build': 'bash install.sh',
+    \ }
+  Plug 'junegunn/fzf'
 
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
+call plug#end()
 
-"End dein Scripts-------------------------
-
-" file path
 let $PATH = $PATH . ':' . expand('~/.local/bin')
 
 " ---- enable plugins ----
@@ -142,6 +119,7 @@ hi Warning term=underline cterm=underline ctermfg=Yellow gui=undercurl guisp=Gol
 hi link ALEWarning Warning
 hi link ALEInfo SpellCap
 " ---- filetype ----
+autocmd BufRead, BufRead, BufNewFile *.ts set filetype=typescript
 
 " ---- ALE ----
 let g:ale_echo_msg_format = '[%linter%] %s'
@@ -158,8 +136,6 @@ colorscheme hybrid_material
 if (has("termguicolors"))
   set termguicolors
 endif
-
-" ---- lightline ----
 
 " ---- template  ----
 let g:sonictemplate_vim_template_dir = ['~/.vim/template']
