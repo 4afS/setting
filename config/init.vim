@@ -13,7 +13,7 @@ call plug#begin('~/.vim/plugged')
       Plug 'roxma/vim-hug-neovim-rpc'
   endif
   " deoplete
-  Plug 'Shougo/deoplete.nvim', {'do' : ':UpdateRemotePlugins'}
+  Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
   Plug 'Shougo/neosnippet.vim'
   Plug 'Shougo/neosnippet-snippets'
   Plug 'Shougo/neco-syntax'
@@ -51,16 +51,17 @@ call plug#begin('~/.vim/plugged')
   " language server
   Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
-    \ 'do': 'bash install.sh'
+    \ 'do': 'bash install.sh '
     \ }
   Plug 'junegunn/fzf'
+  " spell check
+  Plug 'kamykn/spelunker.vim'
 
 call plug#end()
 
 let $PATH = $PATH . ':' . expand('~/.local/bin')
 
 " ---- enable plugins ----
-let g:deoplete#enable_at_startup = 1
 let g:ale_completion_enabled = 1
 
 " ---- Haskell  ----
@@ -122,6 +123,9 @@ autocmd BufRead, BufRead, BufNewFile *.ts set filetype=typescript
 " ---- ALE ----
 let g:ale_echo_msg_format = '[%linter%] %s'
 let g:ale_statusline_format = ['E%d', 'W%d', 'ok']
+
+" ---- Spelling ----
+highlight SpelunkerSpellBad cterm=underline
 
 " ---- Theme ----
 set t_Co=256
