@@ -19,13 +19,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'Shougo/neco-syntax'
   Plug 'Shougo/unite.vim'
   " color scheme
-  Plug 'kristijanhusak/vim-hybrid-material'
+  Plug 'w0ng/vim-hybrid'
   " status line
   Plug 'itchyny/lightline.vim'
   Plug 'maximbaz/lightline-ale'
   " indent line
   Plug 'Yggdroot/indentLine'
-  " for .json files
   " syntax highlight
   Plug 'derekwyatt/vim-scala', {'for': ['scala']}
   Plug 'udalov/kotlin-vim', {'for': ['kotlin']}
@@ -35,7 +34,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'elzr/vim-json', {'for': ['json']}
   " quickrun
   Plug 'thinca/vim-quickrun'
-  Plug 'Shougo/vimproc.vim', {'build' : 'make'}
+  Plug 'Shougo/vimproc.vim', {'do' : 'make'}
   " complete (), {}, etc
   Plug 'tpope/vim-surround'
   " highlight words
@@ -46,8 +45,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'tomtom/tcomment_vim'
   " shell commands
   Plug 'tpope/vim-eunuch'
-  " complement paretheses
+  " paretheses
   Plug 'cohama/lexima.vim'
+  Plug 'itchyny/vim-parenmatch'
   " language server
   Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
@@ -64,92 +64,30 @@ let $PATH = $PATH . ':' . expand('~/.local/bin')
 " ---- enable plugins ----
 let g:ale_completion_enabled = 1
 
-" ---- Haskell  ----
-" syntax
-let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
-let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
-let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
-let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
-let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
-let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
-let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
-" indent
-let g:haskell_indent_let = 4
-let g:haskell_indent_if = 3
-let g:haskell_indent_let = 4
-let g:haskell_indent_where = 6
-let g:haskell_indent_do = 3
-let g:haskell_indent_guard = 2
-let g:haskell_indent_in = 1
-
-" HIE
-set hidden
-
-let g:LanguageClient_rootMakers = {
-  \ 'haskell': ['stack.yaml']
-  \ } 
-let g:LanguageClient_serverCommands = {
-  \ 'haskell': ['hie-wrapper'],
-  \ 'c': ['clangd'],
-  \ 'python':['pyls']
-  \ }
-
-" LanguageClientの機能のショートカットを登録
-function LC_maps()
-  if has_key(g:LanguageClient_serverCommands, &filetype)
-    nnoremap <silent> <Alt>r :call LanguageClient_contextMenu()<CR>
-    map <silent> <Leader>lt :call LanguageClient#textDocument_hover()<CR>
-    map <silent> <Leader>lg :call LanguageClient#textDocument_definition()<CR>
-    map <silent> <Leader>lr :call LanguageClient#textDocument_rename()<CR>
-    map <silent> <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
-    map <silent> <Leader>lb :call LanguageClient#textDocument_references()<CR>
-    map <silent> <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
-    map <silent> <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
-  endif
-endfunction
-
-augroup LanguageClientKeyconfig
-  autocmd!
-  autocmd Filetype * call LC_maps()
-augroup END
-
-hi link ALEError Error
-hi Warning term=underline cterm=underline ctermfg=Yellow gui=undercurl guisp=Gold
-hi link ALEWarning Warning
-hi link ALEInfo SpellCap
-" ---- filetype ----
-autocmd BufRead, BufRead, BufNewFile *.ts set filetype=typescript
-
-" ---- ALE ----
-let g:ale_echo_msg_format = '[%linter%] %s'
-let g:ale_statusline_format = ['E%d', 'W%d', 'ok']
-
-" ---- Spelling ----
-highlight SpelunkerSpellBad cterm=underline
-
 " ---- Theme ----
 set t_Co=256
 syntax on
 set background=dark
 autocmd ColorScheme * highlight Normal ctermbg=none
 autocmd ColorScheme * highlight LineNr ctermbg=none
-colorscheme hybrid_material
+colorscheme hybrid
 
 if (has("termguicolors"))
   set termguicolors
 endif
 
-" ---- template  ----
+" ---- template ----
 let g:sonictemplate_vim_template_dir = ['~/.vim/template']
 autocmd BufNewFile *.c 0r $HOME/Program/C2/template.c
 
-" ---- display  ----
+" ---- display ----
 set number 
 set title 
-set nocursorline 
+set cursorline
+hi clear CursorLine
 set guioptions-=m
 set inccommand=split
-let loaded_matchparen=1
+let g:loaded_matchparen=1
 
 " ---- tab  ----
 set expandtab
@@ -205,7 +143,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
     \ "\<Plug>(neosnippet_expand_or_jump)"
     \: "\<TAB>"
 
-" ---- key-mappings ----
+" ---- key-mapping ----
 nnoremap ; :
 
 nnoremap <C-k> :QuickRun<CR><C-w>j
@@ -262,6 +200,62 @@ let g:quickrun_config = {
 \       "exec" : "%c %o %s"    
 \   }
 \}
+
+" ---- Haskell  ----
+" syntax
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+" indent
+let g:haskell_indent_let = 4
+let g:haskell_indent_if = 3
+let g:haskell_indent_let = 4
+let g:haskell_indent_where = 6
+let g:haskell_indent_do = 3
+let g:haskell_indent_guard = 2
+let g:haskell_indent_in = 1
+
+" ---- HIE ----
+set hidden
+
+let g:LanguageClient_rootMakers = {
+  \ 'haskell': ['stack.yaml']
+  \ } 
+let g:LanguageClient_serverCommands = {
+  \ 'haskell': ['hie-wrapper'],
+  \ 'c': ['clangd'],
+  \ 'python':['pyls']
+  \ }
+
+" ---- LanguageClient ----
+function LC_maps()
+  if has_key(g:LanguageClient_serverCommands, &filetype)
+    nnoremap <silent> <Space>r :call LanguageClient_contextMenu()<CR>
+  endif
+endfunction
+
+augroup LanguageClientKeyconfig
+  autocmd!
+  autocmd Filetype * call LC_maps()
+augroup END
+
+hi link ALEError Error
+hi Warning term=underline cterm=underline ctermfg=Yellow gui=undercurl guisp=Gold
+hi link ALEWarning Warning
+hi link ALEInfo SpellCap
+" ---- filetype ----
+autocmd BufRead, BufRead, BufNewFile *.ts set filetype=typescript
+
+" ---- ALE ----
+let g:ale_echo_msg_format = '[%linter%] %s'
+let g:ale_statusline_format = ['E%d', 'W%d', 'ok']
+
+" ---- Spelling ----
+highlight SpelunkerSpellBad cterm=underline
 
 " ---- json  ---
 let g:vim_json_syntax_conceal = 0
