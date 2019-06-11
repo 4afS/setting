@@ -12,17 +12,22 @@ call plug#begin('~/.vim/plugged')
       Plug 'roxma/nvim-yarp'
       Plug 'roxma/vim-hug-neovim-rpc'
   endif
-  " deoplete
-  Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-  Plug 'Shougo/neosnippet.vim'
-  Plug 'Shougo/neosnippet-snippets'
-  Plug 'Shougo/neco-syntax'
-  Plug 'Shougo/unite.vim'
+  " completion
+    if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+  endif
+  if &filetype != 'haskell'
+    Plug 'Shougo/neosnippet.vim'
+    Plug 'Shougo/neosnippet-snippets'
+  endif
   " color scheme
   Plug 'w0ng/vim-hybrid'
   " status line
   Plug 'itchyny/lightline.vim'
-  Plug 'maximbaz/lightline-ale'
   " indent line
   Plug 'Yggdroot/indentLine'
   " syntax highlight
@@ -32,9 +37,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'neovimhaskell/haskell-vim', {'for': ['haskell']}
   Plug 'kana/vim-filetype-haskell', {'for': ['haskell']}
   Plug 'elzr/vim-json', {'for': ['json']}
-  " quickrun
-  Plug 'thinca/vim-quickrun'
-  Plug 'Shougo/vimproc.vim', {'do' : 'make'}
   " complete (), {}, etc
   Plug 'tpope/vim-surround'
   " highlight words
@@ -51,10 +53,10 @@ call plug#begin('~/.vim/plugged')
   " language server
   Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
-    \ 'do': 'bash install.sh '
+    \ 'do': 'bash install.sh ',
     \ }
   Plug 'junegunn/fzf'
-  " spell check
+  " spelling
   Plug 'kamykn/spelunker.vim'
 
 call plug#end()
@@ -62,7 +64,7 @@ call plug#end()
 let $PATH = $PATH . ':' . expand('~/.local/bin')
 
 " ---- enable plugins ----
-let g:ale_completion_enabled = 1
+let g:deoplete#enable_at_startup = 1
 
 " ---- Theme ----
 set t_Co=256
@@ -79,6 +81,7 @@ endif
 " ---- template ----
 let g:sonictemplate_vim_template_dir = ['~/.vim/template']
 autocmd BufNewFile *.c 0r $HOME/Program/C2/template.c
+set completeopt=noinsert,menuone,noselect  
 
 " ---- display ----
 set number 
@@ -103,50 +106,25 @@ set backspace=indent,eol,start
 " ---- statusline  ----
 set laststatus=2
 set noshowmode
+set cmdheight=3
 
 " ---- search  ----
 set ignorecase 
 set smartcase 
 set hlsearch
+set gdefault
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
+
+" ---- sound ----
+set visualbell t_vb=
+set noerrorbells
 
 " ---- command  ----
 set wildmenu
 set history=5000
 
-" ---- autoindent  ----
-if &term =~ "xterm"
-    let &t_SI .= "\e[?2004h"
-    let &t_EI .= "\e[?2004l"
-    let &pastetoggle = "\e[201~"
-
-    function XTermPasteBegin(ret)
-        set paste
-        return a:ret
-    endfunction
-    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
-endif
-
-" ---- key-mappings for deoplete ----
-"   Ctrl+k : Jump target
-"   Tab    : Select snippet AND Jump target
-"   Ctrl+n : Move cursol
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-    \ "\<Plug>(neosnippet_expand_or_jump)"
-    \: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-    \ "\<Plug>(neosnippet_expand_or_jump)"
-    \: "\<TAB>"
-
 " ---- key-mapping ----
 nnoremap ; :
-
-nnoremap <C-k> :QuickRun<CR><C-w>j
 
 nnoremap <C-n> :NERDTreeToggle<CR>
 
@@ -171,35 +149,26 @@ nnoremap <C-l> gt
 
 let g:tcomment_maps = 0
 
+" LanguageClient
+nnoremap <silent> <C-l> :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> <C-l>c :call LanguageClient#textDocument_codeAction()<CR>
+nnoremap <silent> <C-l>h :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> <C-l>f :call LanguageClient#textDocument_formatting()<CR>
+
+" Hoogle
+nnoremap <silent> <C-l>t :HoogleWord<CR>
+
 " ---- terminal ----
 set shell=bash
+
+" ---- like quickrun ----
+autocmd BufRead,BufNewFile *.hs nnoremap <Space>q :!stack run<CR>
+autocmd BufRead,BufNewFile *.py nnoremap <Space>q :!python3 "%"<CR>
 
 " For snippet_complete marker.
 if has('conceal')
     set conceallevel=2 concealcursor=i
 endif
-
-" ---- quickrun  ----
-let g:quickrun_config = {
-\   "_" : {
-\       "runner" : "vimproc",
-\       "runner/vimproc/updatetime" : 10,
-\       "outputter/buffer/split" : ":botright 10sp",
-\       "utputter/error/success" : "buffer",
-\       "outputter/error/error" : "buffer"
-\   },
-\
-\   "python" : {
-\       "command" : "python3",
-\       "exec" : "%c %s"
-\   },
-\   
-\   "haskell" : {
-\       "command" : "stack",
-\       "cmdopt" : "runghc",
-\       "exec" : "%c %o %s"    
-\   }
-\}
 
 " ---- Haskell  ----
 " syntax
@@ -223,39 +192,42 @@ let g:haskell_indent_in = 1
 set hidden
 
 let g:LanguageClient_rootMakers = {
-  \ 'haskell': ['stack.yaml']
+  \ 'haskell': ['stack.yaml'],
   \ } 
 let g:LanguageClient_serverCommands = {
   \ 'haskell': ['hie-wrapper'],
   \ 'c': ['clangd'],
-  \ 'python':['pyls']
+  \ 'Python':['pyls'],
   \ }
 
 " ---- LanguageClient ----
-function LC_maps()
-  if has_key(g:LanguageClient_serverCommands, &filetype)
-    nnoremap <silent> <Space>r :call LanguageClient_contextMenu()<CR>
-  endif
-endfunction
-
-augroup LanguageClientKeyconfig
-  autocmd!
-  autocmd Filetype * call LC_maps()
-augroup END
-
 hi link ALEError Error
 hi Warning term=underline cterm=underline ctermfg=Yellow gui=undercurl guisp=Gold
 hi link ALEWarning Warning
 hi link ALEInfo SpellCap
+
 " ---- filetype ----
 autocmd BufRead, BufRead, BufNewFile *.ts set filetype=typescript
 
 " ---- ALE ----
 let g:ale_echo_msg_format = '[%linter%] %s'
-let g:ale_statusline_format = ['E%d', 'W%d', 'ok']
 
 " ---- Spelling ----
 highlight SpelunkerSpellBad cterm=underline
+
+" ---- deoplete ----
+" use <tab> key for completion
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ deoplete#manual_complete()
+
+imap <CR> <Plug>(neosnippet_expand_or_jump)
+smap <CR> <Plug>(neosnippet_expand_or_jump)
 
 " ---- json  ---
 let g:vim_json_syntax_conceal = 0
@@ -270,16 +242,39 @@ function! s:Jq(...)
     execute "%! jq \"" . l:arg . "\""
 endfunction
 
-" ---- Search with Hoogle from command :Hoogle ... ----
-command! -nargs=? Hoogle call s:SearchWithHoogle(<f-args>)
-function! s:SearchWithHoogle(...)
-    if a:0 > 0
-        let keywords = "/?hoogle=" . a:1
-    else
-        let keywords = ""
-    endif
-    execute "terminal links2 https://www.haskell.org/hoogle" . keywords
+" ---- Hoogle ----
+command! -nargs=* H call s:HoogleCommand(<f-args>)
+function! s:HoogleCommand(...)
+  let cmd = ["!hoogle --count=15 -q "]
+  if a:0 <= 0
+    echo cmd = "No args"
+  elseif a:0 == 1
+    let cmd = cmd[0] . a:1
+  else
+    let cmd = [(cmd[0] . " \"" . a:1)]
+    call extend(cmd, a:000[1:])
+    let cmd =  join(cmd) . "\""
+  endif
+  execute cmd
 endfunction
 
-" ---- encode  ----
-set encoding=utf-8
+command! -nargs=0 HoogleWord call s:HoogleWord()
+function! s:HoogleWord()
+  let search_word = expand("<cword>")
+  if strlen(search_word) >= 1
+    execute "!hoogle --count=1 -q " . search_word
+  endif
+endfunction
+
+" ---- autoindent  ----
+if &term =~ "xterm"
+    let &t_SI .= "\e[?2004h"
+    let &t_EI .= "\e[?2004l"
+    let &pastetoggle = "\e[201~"
+
+    function XTermPasteBegin(ret)
+        set paste
+        return a:ret
+    endfunction
+    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+endif
