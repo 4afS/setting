@@ -28,6 +28,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'w0ng/vim-hybrid'
   " status line
   Plug 'itchyny/lightline.vim'
+  Plug 'palpatineli/lightline-lsc-nvim'
   " indent line
   Plug 'Yggdroot/indentLine'
   " syntax highlight
@@ -56,8 +57,14 @@ call plug#begin('~/.vim/plugged')
     \ 'do': 'bash install.sh ',
     \ }
   Plug 'junegunn/fzf'
+  Plug 'junegunn/fzf.vim'
   " spelling
   Plug 'kamykn/spelunker.vim'
+  " git
+  Plug 'airblade/vim-gitgutter'
+  Plug 'tpope/vim-fugitive'
+  " show how many searched
+  Plug 'osyo-manga/vim-anzu'
 
 call plug#end()
 
@@ -107,6 +114,59 @@ set backspace=indent,eol,start
 set laststatus=2
 set noshowmode
 set cmdheight=3
+let g:lightline = {
+\   'colorscheme': 'one',
+\   'active': {
+\     'left': [
+\       ['mode', 'paste'], 
+\       ['readonly', 'gitgutter', 'anzu', 'absolutepath', 'modified']
+\     ],
+\     'right': [
+\       ['lineinfo'],
+\       ['percent'],
+\       [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+\       ['fileencoding', 'filetype']
+\     ]
+\   },
+\   'component_function': {
+\     'gitgutter': 'MyGitGutter',
+\     'anzu': 'anzu#search_status'
+\   }
+\ }
+
+let g:lightline.component_type = {
+      \     'linter_checking': 'left',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'left',
+      \ }
+
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#lsc#checking',
+      \  'linter_warnings': 'lightline#lsc#warnings',
+      \  'linter_errors': 'lightline#lsc#errors',
+      \  'linter_ok': 'lightline#lsc#ok',
+      \ }
+
+function! MyGitGutter()
+  if ! exists('*GitGutterGetHunkSummary')
+        \ || ! get(g:, 'gitgutter_enabled', 0)
+    return ''
+  endif
+  let symbols = [
+        \ '+ ',
+        \ '~ ',
+        \ '- '
+        \ ]
+  let hunks = GitGutterGetHunkSummary()
+  let ret = []
+  for i in [0, 1, 2]
+    if hunks[i] > 0
+      call add(ret, symbols[i] . hunks[i])
+    endif
+  endfor
+  return join(ret, ' ')
+endfunction
 
 " ---- search  ----
 set ignorecase 
@@ -144,8 +204,8 @@ nnoremap <Space>h <C-w>h
 
 " tab
 nnoremap <Space>t :tabnew<CR>
-nnoremap <C-h> gT
-nnoremap <C-l> gt
+nnoremap th gT
+nnoremap tl gt
 
 let g:tcomment_maps = 0
 
@@ -156,15 +216,25 @@ nnoremap <silent> <C-l>h :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> <C-l>f :call LanguageClient#textDocument_formatting()<CR>
 
 " Hoogle
-nnoremap <silent> <C-l>t :HoogleWord<CR>
+nnoremap <silent> <C-l>w :HoogleWord<CR>
+
+" anzu
+nmap n <Plug>(anzu-n)
+nmap N <Plug>(anzu-N)
+
+" fzf
+nnoremap <C-f>f :Files<CR>
+nnoremap <C-f>c :Commands<CR>
+nnoremap <C-f>l :Locate<Space>
 
 " ---- terminal ----
 set shell=bash
 
 " ---- like quickrun ----
-autocmd BufRead,BufNewFile *.hs nnoremap <Space>q :!stack run<CR>
-autocmd BufRead,BufNewFile *.py nnoremap <Space>q :!python3 "%"<CR>
-autocmd BufRead,BufNewFile *.rs nnoremap <Space>q :!cargo run<CR>
+autocmd BufRead,BufNewFile *.hs nnoremap <Space>q :write<CR>:!stack run<CR>
+autocmd BufRead,BufNewFile *.py nnoremap <Space>q :write<CR>:!python3 "%"<CR>
+autocmd BufRead,BufNewFile *.rs nnoremap <Space>q :write<CR>:!cargo run<CR>
+autocmd BufRead,BufNewFile *.c  nnoremap <Space>q :write<CR>:!gcc % && ./a.out<CR>
 
 " For snippet_complete marker.
 if has('conceal')
@@ -217,6 +287,9 @@ let g:ale_echo_msg_format = '[%linter%] %s'
 " ---- Spelling ----
 highlight SpelunkerSpellBad cterm=underline
 
+" ---- nerdtree ----
+let NERDTreeShowHidden = 1
+
 " ---- deoplete ----
 " use <tab> key for completion
 function! s:check_back_space() abort
@@ -228,8 +301,9 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ deoplete#manual_complete()
 
-imap <CR> <Plug>(neosnippet_expand_or_jump)
-smap <CR> <Plug>(neosnippet_expand_or_jump)
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
 
 " ---- json  ---
 let g:vim_json_syntax_conceal = 0
@@ -268,15 +342,9 @@ function! s:HoogleWord()
   endif
 endfunction
 
-" ---- autoindent  ----
-if &term =~ "xterm"
-    let &t_SI .= "\e[?2004h"
-    let &t_EI .= "\e[?2004l"
-    let &pastetoggle = "\e[201~"
-
-    function XTermPasteBegin(ret)
-        set paste
-        return a:ret
-    endfunction
-    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+" ---- gitgutter ----
+if exists('&signcolumn')
+  set signcolumn=yes
+else
+  let g:gitgutter_sign_column_always = 1
 endif
