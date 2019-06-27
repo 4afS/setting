@@ -19,6 +19,7 @@ echo "alias ej='trans :ja'" >> $HOME/.bashrc
 echo "alias ejb='trans :ja -b'" >> $HOME/.bashrc
 echo "alias \"del.swap\"=\"rm ~/.local/share/nvim/swap/*\"" >> $HOME/.bashrc
 echo "mkcd () { mkdir -p \"\$@\" && eval cd \"\\"\"\\$\$#\\"\"\"; }" >> $HOME/.bashrc
+echo "export EDITOR=nvim" >> $HOME/.bashrc
 
 # golang
 wget https://dl.google.com/go/go1.11.linux-amd64.tar.gz
