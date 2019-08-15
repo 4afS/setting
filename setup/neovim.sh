@@ -1,9 +1,9 @@
 # neovim
 sudo apt install software-properties-common
-pip3 install neovim
 sudo add-apt-repository ppa:neovim-ppa/nostable -y
 sudo apt update
 sudo apt install neovim -y
+pip3 install neovim
 
 # get confing files
 mkdir -p $HOME/.config/nvim/
