@@ -1,6 +1,7 @@
 sudo apt install libicu-dev libtinfo-dev libgmp-dev
 
-mkdir $HOME/.hie && cd $_
+mkdir $HOME/.hie 
+cd $HOME/.hie 
 
 git clone https://github.com/haskell/haskell-ide-engine --recurse-submodules && cd haskell-ide-engine
 
