@@ -1,13 +1,19 @@
-# neovim
-sudo apt install software-properties-common
+cd `dirname $0`
+
+# install neovim
+sudo apt install software-properties-common -y
 sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update
 sudo apt install neovim -y
+
 pip3 install neovim
+
+sh nodejs.sh
+sh yarn.sh
 
 mkdir -p $HOME/.config/nvim/
 
-# get confing files
+# get config files
 cd $HOME
 git clone https://github.com/4afs/setting
 cd setting

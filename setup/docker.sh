@@ -12,3 +12,4 @@ sudo apt install -y docker-ce
 sudo groupadd docker
 sudo gpasswd -a $USER docker
 sudo systemctl restart docker
+sudo systemctl enable docker
