@@ -8,8 +8,8 @@ sudo apt install neovim -y
 
 pip3 install neovim
 
-sh nodejs.sh
-sh yarn.sh
+sh ./nodejs.sh
+sh ./yarn.sh
 
 mkdir -p $HOME/.config/nvim/
 
@@ -20,4 +20,5 @@ cd setting
 sh put_config.sh
 
 echo "export XDG_CONFIG_HOME='\$HOME/.config'" >> ~/.bashrc
+echo "alias vim=nvim"
 nvim +PlugInstall +"q!" +"q!"
