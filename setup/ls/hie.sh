@@ -1,9 +1,10 @@
-sudo apt install libicu-dev libtinfo-dev libgmp-dev
+sudo apt update
+sudo apt upgrade -y
 
-mkdir $HOME/.hie 
-cd $HOME/.hie 
+sudo apt install libicu-dev libtinfo-dev libgmp-dev -y
 
-git clone https://github.com/haskell/haskell-ide-engine --recurse-submodules && cd haskell-ide-engine
+git clone https://github.com/haskell/haskell-ide-engine --recurse-submodules $HOME/.hie 
+cd $HOME/.hie
 
-stack install.hs hie-8.6.5
-stack install.hs build-doc
+stack ./install.hs hie-8.6.5
+stack ./install.hs build-doc

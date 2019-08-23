@@ -1,8 +1,5 @@
-sudo npm install -g elm elm-test elm-format --unsafe-perm
+which elm        || sudo npm install -g elm --unsafe-perm
+which elm-test   || sudo npm install -g elm-test --unsafe-perm
+which elm-format || sudo npm install -g elm-format --unsafe-perm
 
-git clone git@github.com:elm-tooling/elm-language-server.git
-cd elm-language-server
-
-npm install
-npm run compile
-sudo npm link
+sudo npm install -g @elm-tooling/elm-language-server
