@@ -14,7 +14,10 @@ sudo apt install -y \
     gnome-tweaks \
     fonts-hack
 
-echo "\n# variables"
+if [ ! -e $HOME/.netrc ];
+  echo -e "machine github.com\nlogin \npassword" > .netrc
+
+echo -e "\n# variables"
 echo "export PS1='\${debian_chroot:+(\$debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]: \[\033[01;34m\]\w\[\033[00m\] > '" >> $HOME/.bashrc
 echo "export EDITOR=nvim" >> $HOME/.bashrc
 echo "" >> $HOME/.bashrc
@@ -30,11 +33,6 @@ echo "mkcd () { mkdir -p \"\$@\" && eval cd \"\\"\"\\$\$#\\"\"\"; }" >> $HOME/.b
 echo "" >> $HOME/.bashrc
 
 # golang
-wget https://dl.google.com/go/go1.11.linux-amd64.tar.gz
-tar -xvf go1.11.linux-amd64.tar.gz
-sudo mv go /usr/local
-echo -e "\n# go" >> $HOME/.bashrc
-echo "export GOROOT=/usr/local/go" >> $HOME/.bashrc
-echo "export GOPATH=\$HOME/go" >> $HOME/.bashrc
-echo "export PATH=\$GOPATH/bin:\$GOROOT/bin:\$PATH" >> $HOME/.bashrc
-echo "" >> $HOME/.bashrc
+sudo add-apt-repository ppa:longsleep/golang-backports -y
+sudo apt-get update
+sudo apt-get install golang-go -y
