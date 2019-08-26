@@ -11,6 +11,8 @@ pip3 install neovim
 sh ./nodejs.sh
 sh ./yarn.sh
 
+sudo npm install -g neovim
+
 mkdir -p $HOME/.config/nvim/
 
 # get config files

@@ -8,10 +8,10 @@ runtime inits/key-mapping.vim
 
 runtime inits/coc-nvim.vim
 
-runtime inits/lang/haskell.vim
-runtime inits/lang/scala.vim
-runtime inits/lang/elm.vim
-runtime inits/lang/c.vim
+runtime lang/haskell.vim
+runtime lang/scala.vim
+runtime lang/elm.vim
+runtime lang/c.vim
 
 runtime inits/lightline.vim
 runtime inits/run.vim
