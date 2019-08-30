@@ -17,4 +17,6 @@ let g:elm_setup_keybinding = 0
 let g:elm_jump_to_error = 0
 
 " ---- tab ----
-au BufNewFile,BufRead *.elm setlocal tabstop=4 shiftwidth=4 softtabstop=4
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4

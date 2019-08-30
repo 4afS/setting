@@ -8,10 +8,11 @@ runtime inits/key-mapping.vim
 
 runtime inits/coc-nvim.vim
 
-runtime lang/haskell.vim
-runtime lang/scala.vim
-runtime lang/elm.vim
-runtime lang/c.vim
+au Filetype haskell runtime lang/haskell.vim
+au Filetype scala runtime lang/scala.vim
+au Filetype rust runtime lang/rust.vim
+au Filetype elm runtime lang/elm.vim
+au Filetype c,cpp runtime lang/c.vim
 
 runtime inits/lightline.vim
 runtime inits/run.vim

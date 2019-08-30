@@ -9,6 +9,7 @@ call coc#add_extension(
       \ 'coc-lists',
       \ 'coc-python',
       \ 'coc-snippets',
+      \ 'coc-rls',
       \)
 
 call coc#config('coc.preferences', {
