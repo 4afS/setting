@@ -59,3 +59,5 @@ function! s:HoogleWord()
   endif
 endfunction
 
+" ---- key map ----
+nmap <C-l><C-f> :%!stylish-haskell<CR>

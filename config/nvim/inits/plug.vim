@@ -45,8 +45,6 @@ call plug#begin('~/.vim/plugged')
   " incremental search in command mode
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
-  " spelling
-  Plug 'kamykn/spelunker.vim'
   " git
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-fugitive'
@@ -54,6 +52,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'osyo-manga/vim-anzu'
   " language server protocol
   Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+  " Personal wiki
+  Plug 'vimwiki/vimwiki'
 
 call plug#end()
 

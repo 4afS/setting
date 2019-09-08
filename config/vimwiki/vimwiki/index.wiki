@@ -1,0 +1,32 @@
+= Wiki for me =
+
+== Key Configurations And Commands ==
+  === default ===
+  
+  === fzf ===
+    * *<C-f>f (PATH)*: search *files* at PATH
+    * *<C-f>c*: search *commands*
+    * *<C-f>l PATTERN*: search *all of the files that matching the PATTERN*
+  
+  === coc-nvim ===
+    * *[d*: navigate previous *diagnostics* 
+    * *d]*: navigate next *diagnostics* 
+
+    === gotos ===
+      * *<C-l>d*:*definition*
+      * *<C-l>r*:*references*
+
+    * *<C-k>*: documentation (show types in .hs files)
+
+    * *<C-l>ca*: do *code action* of current line
+    * *<C-l>a*: do *code action* of selected region
+
+    * *<C-l>f*: *fix* a problem of current line
+    * *<C-l><C-f>*: *format* current buffe
+    * *<C-l>i*:*organize import* of current buffe
+
+    * *:Fold*:*fold* current buffe
+  
+  === Hoogle ===
+    * *<C-l>w*: search in *Hoogle*
+    * *:H WORD*:search WORD in *Hoogle*

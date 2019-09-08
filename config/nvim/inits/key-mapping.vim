@@ -24,12 +24,6 @@ nnoremap tl gt
 
 let g:tcomment_maps = 0
 
-" LanguageClient
-nnoremap <silent> <C-l> :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> <C-l>c :call LanguageClient#textDocument_codeAction()<CR>
-nnoremap <silent> <C-l>h :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> <C-l>f :call LanguageClient#textDocument_formatting()<CR>
-
 " Hoogle
 nnoremap <silent> <C-l>w :HoogleWord<CR>
 
