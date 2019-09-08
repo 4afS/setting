@@ -21,6 +21,6 @@ git clone https://github.com/4afs/setting
 cd setting
 sh put_config.sh
 
-echo "export XDG_CONFIG_HOME='\$HOME/.config'" >> ~/.bashrc
+echo "export XDG_CONFIG_HOME=\"\$HOME/.config\"" >> ~/.bashrc
 echo "alias vim=nvim"
 nvim +PlugInstall +"q!" +"q!"
