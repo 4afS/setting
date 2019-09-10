@@ -54,6 +54,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
   " Personal wiki
   Plug 'vimwiki/vimwiki'
+  " Automated Vim session management with file auto-save and persistent undo history
+  Plug 'thaerkh/vim-workspace'
+  " A Vim plugin for visually displaying indent levels in code
+  Plug 'nathanaelkane/vim-indent-guides'
+  " enable repeating supported plugin maps with "."
+  Plug 'tpope/vim-repeat'
 
 call plug#end()
 

@@ -41,3 +41,7 @@ set completeopt=noinsert,menuone,noselect
 
 " ---- buffer ----
 set hidden
+
+" ---- undo ----
+set undofile
+set undodir=~/.undodir
