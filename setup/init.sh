@@ -14,8 +14,9 @@ sudo apt install -y \
     gnome-tweaks \
     fonts-hack
 
-if [ ! -e $HOME/.netrc ];
+if [ ! -e $HOME/.netrc ]; then
   echo -e "machine github.com\nlogin \npassword" > .netrc
+fi
 
 echo -e "\n# variables"
 echo "export PS1='\${debian_chroot:+(\$debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]: \[\033[01;34m\]\w\[\033[00m\] > '" >> $HOME/.bashrc
