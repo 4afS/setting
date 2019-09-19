@@ -17,7 +17,7 @@ sh init.sh
 
 cd neovim
 
-sh neovim
+sh nodejs.sh
 sh yarn.sh
 sh neovim.sh
 
