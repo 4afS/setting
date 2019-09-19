@@ -1,7 +1,3 @@
-# initial setting
-sudo apt update
-sudo apt upgrade -y
-
 sudo apt install -y \
     git \
     wget \
@@ -15,10 +11,6 @@ sudo apt install -y \
     fonts-hack
 
 if [ ! -e $HOME/.netrc ]; then
-  echo -e "machine github.com\nlogin \npassword" > .netrc
+  echo -e "machine github.com\nlogin \npassword" > $HOME/.netrc
 fi
 
-# golang
-sudo add-apt-repository ppa:longsleep/golang-backports -y
-sudo apt-get update
-sudo apt-get install golang-go -y
