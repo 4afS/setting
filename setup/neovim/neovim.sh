@@ -20,4 +20,4 @@ sh put_config.sh
 
 echo "export XDG_CONFIG_HOME=\"\$HOME/.config\"" >> ~/.bashrc
 echo "alias vim=nvim" >> ~/.bashrc
-nvim +PlugInstall +"qall!"
+nvim +PlugInstall +qall
