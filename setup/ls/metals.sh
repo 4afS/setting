@@ -1,5 +1,4 @@
-cd $HOME
-mkdir .install_metals
+mkdir -p $HOME/.install_metals
 cd $HOME/.install_metals/
 
 # Make sure to use coursier v1.1.0-M9 or newer.
@@ -14,5 +13,5 @@ sudo ./coursier bootstrap \
   -r sonatype:snapshots \
   -o /usr/local/bin/metals-vim -f
 
+rm -rf $HOME/.install_metals
 cd $HOME
-rm -rf .install_metals
