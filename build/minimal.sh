@@ -22,4 +22,6 @@ sh yarn.sh
 sh neovim.sh
 
 cd $HOME
-echo "\nall done! plz reboot."
+. .bashrc
+
+echo "\nall done!"
