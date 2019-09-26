@@ -10,4 +10,4 @@
     - enter `machine`, `login`, and `password`.
 
 ## build minimal
-- Run a setup script `curl -sSL https://github.com/4afS/setting/blob/master/build/minimal.sh | sh`
+- Run a setup script `curl -sSL https://raw.githubusercontent.com/4afS/setting/master/build/minimal.sh | sh`
