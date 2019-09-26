@@ -21,7 +21,4 @@ sh nodejs.sh
 sh yarn.sh
 sh neovim.sh
 
-cd $HOME
-. .bashrc
-
 echo "\nall done!"
