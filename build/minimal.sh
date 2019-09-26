@@ -1,6 +1,6 @@
 cd $HOME
 
-sudo apt install
+sudo apt update
 sudo apt upgrade -y
 
 sudo apt install -y \
