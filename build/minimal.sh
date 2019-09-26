@@ -7,7 +7,7 @@ sudo apt install -y \
   git
 
 git clone https://github.com/4afs/setting
-cd setting/setting
+cd setting/setup
 
 sh init.sh
 
