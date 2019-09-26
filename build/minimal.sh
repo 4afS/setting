@@ -7,11 +7,7 @@ sudo apt install -y \
   git
 
 git clone https://github.com/4afs/setting
-cd setting
-
-sh put_config.sh
-
-cd setup
+cd setting/setting
 
 sh init.sh
 
@@ -20,5 +16,8 @@ cd neovim
 sh nodejs.sh
 sh yarn.sh
 sh neovim.sh
+
+cd $HOME/setting
+sh put_config.sh
 
 echo "\nall done!"
