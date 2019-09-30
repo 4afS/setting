@@ -1,5 +1,5 @@
 cd `dirname $0`
 
-cp -r $HOME/.config/nvim/* config/nvim
-cp -r $HOME/vimwiki/* config/vimwiki
-cp $HOME/.bashrc config
+cp -r $HOME/.config/nvim config/
+cp -r $HOME/vimwiki config/
+cp $HOME/.bashrc config/
