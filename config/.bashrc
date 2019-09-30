@@ -31,6 +31,32 @@
     # rust
     export PATH="$HOME/.cargo/bin:$PATH"
 
+  # plugin
+    # diar
+    diar-jump(){
+      local selected=$(diar jump $1)
+      local flag=0
+
+      if [[ -n $selected ]]; then
+        if [[ $selected =~ "Is this what you are jumping?" ]]; then
+          diar jump $1
+          flag=1
+        fi
+        if [[ $1 = "-h" ]]; then
+          diar jump $1
+          flag=1
+        fi
+        if [[ $flag -ne 1 ]]; then
+          \cd $selected
+        fi
+      fi
+    }
+    alias da="diar add"
+    alias dd="diar delete"
+    alias dl="diar list"
+    alias dj="diar-jump"
+
+
   # command
     # mkdir and cd
     mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
@@ -39,6 +65,8 @@
       if expr "$1" : "^-" >/dev/null 2>&1; then
         echo -e "\e[1;31mERROR\e[m rm-safe: don't use any options"
         return 1
+      elif [ ! -e ~/.trash ]; then
+        mkdir ~/.trash && mv -fit ~/.trash -fb $@
       else
         mv -fit ~/.trash -fb $@
       fi
