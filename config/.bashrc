@@ -19,6 +19,8 @@
     alias runghc="stack runghc"
     # terminal
     alias term=gnome-terminal
+    # for java
+    source $HOME/.java19
 
   # export
     # nvim
@@ -53,6 +55,7 @@
     }
     alias da="diar add"
     alias dd="diar delete"
+    alias dr="diar rename"
     alias dl="diar list"
     alias dj="diar-jump"
 

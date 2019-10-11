@@ -1,5 +1,7 @@
 " ---- key-mapping ----
 nnoremap ; :
+nnoremap j gj
+nnoremap k gk
 
 nnoremap <C-n> :NERDTreeToggle<CR>
 
