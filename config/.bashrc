@@ -21,6 +21,8 @@
     alias term=gnome-terminal
     # for java
     source $HOME/.java19
+    # thefuck
+    eval "$(thefuck --alias)"
 
   # export
     # nvim
@@ -75,6 +77,14 @@
       fi
     }
     alias rm=rm_safe
+    
+    j() {
+      filename=$1
+      javac $filename
+      filename="${filename%.*}"
+      java $filename
+      rm $filename.class
+    }
 
   # script
     # remove duplicate path 
