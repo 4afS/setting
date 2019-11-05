@@ -47,7 +47,7 @@
       local flag=0
 
       if [[ -n $selected ]]; then
-        if [[ $selected =~ "Is this what you are jumping?" ]]; then
+        if [[ $selected =~ "Error:" ]]; then
           diar jump $1
           flag=1
         fi
