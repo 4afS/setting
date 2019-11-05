@@ -8,30 +8,35 @@
     # transration
     alias ej='trans :ja'
     alias ejb='trans :ja -b'
+
     # neovim
     alias del.swap="rm ~/.local/share/nvim/swap/*"
     alias vim=nvim
     alias vi=nvim
     alias v=nvim
+
     # haskell
     alias ghc="stack ghc"
     alias ghci="stack ghci"
     alias runghc="stack runghc"
+
     # terminal
     alias term=gnome-terminal
-    # for java
-    source $HOME/.java19
+
     # thefuck
-    eval "$(thefuck --alias)"
+    if type "thefuck" > /dev/null 2>&1; then eval "$(thefuck --alias)"; fi
 
   # export
     # nvim
     export EDITOR=nvim
     export XDG_CONFIG_HOME="$HOME/.config"
+
     # nodejs
     export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
     # haskell
     export PATH="$HOME/.local/bin:$PATH"
+
     # rust
     export PATH="$HOME/.cargo/bin:$PATH"
 
@@ -61,10 +66,24 @@
     alias dl="diar list"
     alias dj="diar-jump"
 
+    # exer
+    run() {
+      local result=$(exer run)
+      if [[ $result =~ "Error:" ]]; then
+        echo $result
+      else
+        sh -c "$result"
+      fi
+    }
+
 
   # command
+    # java19
+    if [ -e "$HOME/.java19" ]; then source $HOME/.java19; fi
+
     # mkdir and cd
     mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
+
     # take a backup to ~/.trash when removing files
     rm_safe() {
       if expr "$1" : "^-" >/dev/null 2>&1; then
