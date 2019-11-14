@@ -11,6 +11,7 @@
 
     # neovim
     alias del.swap="rm ~/.local/share/nvim/swap/*"
+    alias vims=nvim
     alias vim=nvim
     alias vi=nvim
     alias v=nvim
@@ -25,6 +26,11 @@
 
     # thefuck
     if type "thefuck" > /dev/null 2>&1; then eval "$(thefuck --alias)"; fi
+
+    # wifi
+    if echo $(ifconfig) | grep -e "wlp1s0" > /dev/null; then
+      alias wifi.up="sudo ifconfig wlp1s0 up"
+    fi
 
   # export
     # nvim
@@ -43,28 +49,22 @@
   # plugin
     # diar
     diar-jump(){
-      local selected=$(diar jump $1)
-      local flag=0
-
-      if [[ -n $selected ]]; then
-        if [[ $selected =~ "Error:" ]]; then
-          diar jump $1
-          flag=1
-        fi
-        if [[ $1 = "-h" ]]; then
-          diar jump $1
-          flag=1
-        fi
-        if [[ $flag -ne 1 ]]; then
-          \cd $selected
+      local result=$(diar jump $1)
+      if [ -n "$result" ]; then
+        if echo "$result" | grep -e "error:" > /dev/null || [ "$1" = "-h" ]; then
+          echo -e "$result"
+        else
+          \cd $result
         fi
       fi
     }
+
     alias da="diar add"
     alias dd="diar delete"
     alias dr="diar rename"
     alias dl="diar list"
     alias dj="diar-jump"
+    alias dp="diar-jump -p"
 
     # exer
     run() {
@@ -81,6 +81,14 @@
     # java19
     if [ -e "$HOME/.java19" ]; then source $HOME/.java19; fi
 
+    j() {
+      filename=$1
+      javac $filename
+      filename="${filename%.*}"
+      java $filename
+      rm $filename.class
+    }
+
     # mkdir and cd
     mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
 
@@ -96,14 +104,13 @@
       fi
     }
     alias rm=rm_safe
-    
-    j() {
-      filename=$1
-      javac $filename
-      filename="${filename%.*}"
-      java $filename
-      rm $filename.class
+
+    # cargo
+    cbi() {
+      cargo build --release &&\
+        cp $(git rev-parse --show-toplevel)/target/release/$1 ~/.cargo/bin
     }
+
 
   # script
     # remove duplicate path 

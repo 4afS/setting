@@ -1,5 +1,5 @@
 call coc#config('rust', {
-      \ 'wait_to_build': 10,
+      \ 'wait_to_build': 1,
       \})
 
 " ---- tab ----
