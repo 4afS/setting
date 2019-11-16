@@ -27,6 +27,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'leafgarland/typescript-vim', {'for': ['typescript']}
   Plug 'neovimhaskell/haskell-vim', {'for': ['haskell']}
   Plug 'kana/vim-filetype-haskell', {'for': ['haskell']}
+  Plug 'alx741/vim-hindent', {'for': ['haskell']}
   Plug 'ElmCast/elm-vim', {'for': ['elm']}
   Plug 'elzr/vim-json', {'for': ['json']}
   " complete (), {}, etc

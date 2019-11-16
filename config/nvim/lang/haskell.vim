@@ -60,4 +60,4 @@ function! s:HoogleWord()
 endfunction
 
 " ---- key map ----
-nmap <C-l><C-f> :%!stylish-haskell<CR>
+nmap <C-l><C-f> :Hindent<CR>
