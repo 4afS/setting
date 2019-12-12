@@ -8,7 +8,6 @@
     # transration
     alias ej='trans :ja'
     alias ejb='trans :ja -b'
-    alias untargz='tar -zxvf'
 
     # neovim
     alias del.swap="rm ~/.local/share/nvim/swap/*"
@@ -32,6 +31,9 @@
     if echo $(ifconfig) | grep -e "wlp1s0" > /dev/null; then
       alias wifi.up="sudo ifconfig wlp1s0 up"
     fi
+
+    #extract
+    alias untargz='tar -zxvf'
 
   # export
     # nvim
