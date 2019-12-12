@@ -8,6 +8,7 @@
     # transration
     alias ej='trans :ja'
     alias ejb='trans :ja -b'
+    alias untargz='tar -zxvf'
 
     # neovim
     alias del.swap="rm ~/.local/share/nvim/swap/*"
@@ -25,7 +26,7 @@
     alias term=gnome-terminal
 
     # thefuck
-    if type "thefuck" > /dev/null 2>&1; then eval "$(thefuck --alias)"; fi
+    if type "thefuck" > /dev/null 2>&1; then eval "$(thefuck --alias f)"; fi
 
     # wifi
     if echo $(ifconfig) | grep -e "wlp1s0" > /dev/null; then
