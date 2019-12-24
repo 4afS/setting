@@ -11,4 +11,3 @@ git clone https://github.com/haskell/haskell-ide-engine --recurse-submodules $HO
 cd $HOME/.hie
 
 stack ./install.hs hie-8.6.5
-stack ./install.hs build-doc
