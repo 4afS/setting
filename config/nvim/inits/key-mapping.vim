@@ -26,9 +26,11 @@ nnoremap tj <C-w><
 nnoremap tk <C-w>>
 
 " tab
-nnoremap <Space>t :tabnew<CR>
-nnoremap th gT
-nnoremap tl gt
+nnoremap <silent> bn :enew<CR>
+nnoremap <silent> bh :bp<CR>
+nnoremap <silent> bl :bn<CR>
+nnoremap <silent> bd :bd<CR>
+nnoremap <silent> bD :bd!<CR>
 
 let g:tcomment_maps = 0
 

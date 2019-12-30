@@ -5,11 +5,11 @@ hi CocWarningSign guifg=#d1cd66 guibg=#353b45
 
 " add extentions
 call coc#add_extension(
-      \ 'coc-angular', 
-      \ 'coc-css', 
-      \ 'coc-html', 
-      \ 'coc-java', 
-      \ 'coc-json', 
+      \ 'coc-angular',
+      \ 'coc-css',
+      \ 'coc-html',
+      \ 'coc-java',
+      \ 'coc-json',
       \ 'coc-lists',
       \ 'coc-python',
       \ 'coc-rls',
@@ -17,12 +17,6 @@ call coc#add_extension(
       \ 'coc-snippets',
       \ 'coc-tsserver',
       \)
-
-call coc#config('coc.preferences', {
-      \ "diagnostic.errorSign": ">>",
-      \ "diagnostic.warningSign": "--",
-      \ "diagnostic.infoSign": "?>",
-      \})
 
 " if hidden is not set, TextEdit might fail.
 set hidden

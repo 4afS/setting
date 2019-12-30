@@ -17,8 +17,8 @@ call plug#begin('~/.vim/plugged')
   " color scheme
   Plug 'w0ng/vim-hybrid'
   " status line
-  Plug 'itchyny/lightline.vim'
-  Plug 'palpatineli/lightline-lsc-nvim'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
   " indent line
   Plug 'Yggdroot/indentLine'
   " syntax highlight

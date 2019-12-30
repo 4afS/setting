@@ -1,0 +1,15 @@
+{
+  "diagnostic.errorSign": "#>",
+  "diagnostic.warningSign": "!>",
+  "diagnostic.infoSign": "?>",
+  "diagnostic.hintSign": "?>",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "typescript",
+    "c",
+    "rust",
+    "scala",
+    "html",
+    "json"
+  ],
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true
+}

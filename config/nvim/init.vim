@@ -14,7 +14,7 @@ au Filetype rust runtime lang/rust.vim
 au Filetype elm runtime lang/elm.vim
 au Filetype c,cpp runtime lang/c.vim
 
-runtime inits/lightline.vim
+runtime inits/airline.vim
 runtime inits/run.vim
 runtime inits/hoogle.vim
 runtime inits/json.vim
