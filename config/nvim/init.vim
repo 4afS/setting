@@ -6,10 +6,10 @@ runtime configs/theme.vim
 runtime configs/filetype.vim
 runtime configs/keymap.vim
 
-runtime configs/plugin-configs/*
-
-runtime configs/run.vim
-runtime configs/hoogle.vim
+let configs = split(glob("$XDG_CONFIG_HOME/nvim/configs/plugin-configs/*.vim"), "\n")
+for config in configs
+  exe 'source' config
+endfor
 
 au Filetype haskell runtime lang/haskell.vim
 au Filetype scala runtime lang/scala.vim

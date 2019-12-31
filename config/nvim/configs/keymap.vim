@@ -1,4 +1,3 @@
-" ---- key-mapping ----
 nnoremap ; :
 nnoremap j gj
 nnoremap k gk

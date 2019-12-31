@@ -9,6 +9,5 @@ let g:vista_ctags_cmd = {
 let g:vista_fzf_preview = ['right:50%']
 
 let g:vista#renderer#enable_icon = 0
-let g:airline#extensions#vista#enabled = 0
 
 nnoremap <C-l>v :Vista!!<CR>

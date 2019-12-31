@@ -4,7 +4,9 @@ set cmdheight=2
 
 let g:airline_powerline_fonts = 1
 
+" extentions
 let g:airline#extensions#keymap#enabled = 0
+let g:airline#extensions#vista#enabled = 0
 
 let g:airline_section_y = ''
 
