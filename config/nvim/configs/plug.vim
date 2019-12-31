@@ -61,6 +61,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'nathanaelkane/vim-indent-guides'
   " enable repeating supported plugin maps with "."
   Plug 'tpope/vim-repeat'
+  " View and search LSP symbols, tags
+  Plug 'liuchengxu/vista.vim'
 
 call plug#end()
 

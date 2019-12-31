@@ -1,13 +1,14 @@
 runtime configs/plug.vim
-runtime configs/plug_config.vim
+runtime configs/plug-config.vim
 
 runtime configs/initial.vim
 runtime configs/theme.vim
 runtime configs/filetype.vim
-runtime configs/key-mapping.vim
+runtime configs/keymap.vim
 
 runtime configs/airline.vim
 runtime configs/coc-nvim.vim
+runtime configs/vista.vim
 
 runtime configs/run.vim
 runtime configs/hoogle.vim

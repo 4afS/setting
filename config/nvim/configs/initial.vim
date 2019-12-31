@@ -44,6 +44,7 @@ set hidden
 
 " ---- encoding ---
 set encoding=utf-8
+set fileencoding=utf-8
 
 " ---- undo ----
 set undofile
