@@ -48,3 +48,6 @@ nnoremap <C-f>l :Locate<Space>
 
 " vista
 nnoremap <C-l>v :Vista!!<CR>
+
+" asyncrun
+nnoremap <Space>q :Asyncrun<Space> 

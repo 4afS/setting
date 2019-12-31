@@ -44,3 +44,31 @@ let g:airline_mode_map = {
       \ ''     : 'V',
       \ }
 
+function! AirlineThemePatch(palette)
+  let a:palette.accents.running = [ '', '', '', '', '' ]
+  let a:palette.accents.success = [ '#D6FFAF', '' , 'green', '', '' ]
+  let a:palette.accents.failure = [ '#ff6060', '' , 'red', '', '' ]
+endfunction
+let g:airline_theme_patch_func = 'AirlineThemePatch'
+
+let g:async_status_old = ''
+
+function! Get_asyncrun_running()
+  let async_status = g:asyncrun_status
+  if async_status != g:async_status_old
+    if async_status == 'running'
+      call airline#parts#define_accent('asyncrun_status', 'running')
+    elseif async_status == 'success'
+      call airline#parts#define_accent('asyncrun_status', 'success')
+    elseif async_status == 'failure'
+      call airline#parts#define_accent('asyncrun_status', 'failure')
+    endif
+    let g:airline_section_x = airline#section#create(['asyncrun_status'])
+    AirlineRefresh
+    let g:async_status_old = async_status
+  endif
+  return async_status
+endfunction
+
+call airline#parts#define_function('asyncrun_status', 'Get_asyncrun_running')
+let g:airline_section_x = airline#section#create(['asyncrun_status'])

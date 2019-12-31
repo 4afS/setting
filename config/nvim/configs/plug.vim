@@ -63,6 +63,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-repeat'
   " View and search LSP symbols, tags
   Plug 'liuchengxu/vista.vim'
+  " Run Async Shell Commands
+  Plug 'skywind3000/asyncrun.vim'
 
 call plug#end()
 
