@@ -6,9 +6,7 @@ runtime configs/theme.vim
 runtime configs/filetype.vim
 runtime configs/keymap.vim
 
-runtime configs/airline.vim
-runtime configs/coc-nvim.vim
-runtime configs/vista.vim
+runtime configs/plugin-configs/*
 
 runtime configs/run.vim
 runtime configs/hoogle.vim

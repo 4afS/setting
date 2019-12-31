@@ -40,7 +40,7 @@ command! -nargs=* H call s:HoogleCommand(<f-args>)
 function! s:HoogleCommand(...)
   let cmd = ["!hoogle --count=15 -q "]
   if a:0 <= 0
-    echo cmd = "No args"
+    let cmd = "No args"
   elseif a:0 == 1
     let cmd = cmd[0] . a:1
   else
@@ -61,3 +61,4 @@ endfunction
 
 " ---- key map ----
 nmap <C-l><C-f> :Hindent<CR>
+nnoremap <silent> <C-l>w :HoogleWord<CR>
