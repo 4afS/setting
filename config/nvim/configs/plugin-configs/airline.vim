@@ -8,7 +8,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#keymap#enabled = 0
 let g:airline#extensions#vista#enabled = 0
 
-let g:airline_section_y = ''
+let g:airline_section_y = airline#section#create(['filetype'])
 
 function! LineNumber()
   return substitute(line('.'), '\d\@<=\(\(\d\{3\}\)\+\)$', ',&', 'g'). ' | '

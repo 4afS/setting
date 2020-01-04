@@ -16,3 +16,4 @@ au Filetype scala runtime lang/scala.vim
 au Filetype rust runtime lang/rust.vim
 au Filetype elm runtime lang/elm.vim
 au Filetype c,cpp runtime lang/c.vim
+au Filetype go runtime lang/go.vim
