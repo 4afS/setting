@@ -26,22 +26,15 @@
     alias runghc="stack runghc"
 
     # terminal
-    alias term=xfce4-terminal
-    alias termt='xfce4-terminal --tab'
+    alias term=gnome-terminal
 
     # thefuck
     if type "thefuck" > /dev/null 2>&1; then eval "$(thefuck --alias f)"; fi
 
-    # ls
-    alias ll='ls -alF'
-    alias la='ls -A'
-    alias l='ls -CF'
-
-    # grep
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-
+    # wifi
+ #   if echo $(ifconfig) | grep -e "wlp1s0" > /dev/null; then
+ #     alias wifi.up="sudo ifconfig wlp1s0 up"
+ #   fi
 
     # others
     alias untargz='tar -zxvf'
