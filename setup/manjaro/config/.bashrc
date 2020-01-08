@@ -33,8 +33,8 @@
     if type "thefuck" > /dev/null 2>&1; then eval "$(thefuck --alias f)"; fi
 
     # oit
-    oit.vpn="sudo openfortivpn vpn2.oit.ac.jp:443 --username e1q18048 -p"
-    oit.ssh="ssh e1q18048@o-vnc.center.oit.ac.jp"
+    alias oit.vpn="sudo openfortivpn vpn2.oit.ac.jp:443 --username e1q18048 -p"
+    alias oit.ssh="ssh e1q18048@o-vnc.center.oit.ac.jp"
 
     # ls
     alias sl=ls
