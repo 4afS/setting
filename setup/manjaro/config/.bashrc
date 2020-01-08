@@ -33,6 +33,7 @@
     if type "thefuck" > /dev/null 2>&1; then eval "$(thefuck --alias f)"; fi
 
     # ls
+    alias sl=ls
     alias ll='ls -alF'
     alias la='ls -A'
     alias l='ls -CF'
@@ -69,6 +70,7 @@
     # go
     export GOPATH=$HOME/.go
     export PATH=$PATH:$GOPATH/bin
+    export PATH=$PATH:$GOROOT/bin
 
     # fcitx
     export GTK_IM_MODULE=fcitx
