@@ -9,7 +9,8 @@
     "rust",
     "scala",
     "html",
-    "json"
+    "json",
+    "go"
   ],
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true
 }
