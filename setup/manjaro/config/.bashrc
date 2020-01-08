@@ -47,7 +47,6 @@
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 
-
     # others
     alias untargz='tar -zxvf'
     alias cp="cp -i"
@@ -56,8 +55,10 @@
     alias np='nano -w PKGBUILD'
     alias more=less
 
-
   # export
+    # bash
+    export HISTCONTROL=ignoredups:erasedups
+
     # nvim
     export EDITOR=nvim
     export XDG_CONFIG_HOME="$HOME/.config"
