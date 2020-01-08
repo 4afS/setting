@@ -9,6 +9,9 @@
     set -o noclobber
 
   # alias
+    # bash
+    alias :q=exit
+
     # transration
     alias ej='trans :ja'
     alias ejb='trans :ja -b'
