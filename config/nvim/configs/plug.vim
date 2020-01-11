@@ -12,7 +12,6 @@ call plug#begin('~/.vim/plugged')
       Plug 'roxma/vim-hug-neovim-rpc'
   endif
   Plug 'Shougo/neosnippet.vim'
-  Plug 'Shougo/neosnippet-snippets'
   " color scheme
   Plug 'w0ng/vim-hybrid'
   " status line

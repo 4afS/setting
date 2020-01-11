@@ -3,3 +3,5 @@ call coc#config('languageserver.golang', {
 \ "rootPatterns": ["go.mod"],
 \ "filetypes": ["go"]
 \})
+
+set noexpandtab
