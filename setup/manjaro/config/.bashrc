@@ -77,7 +77,7 @@
     # go
     export GOPATH=$HOME/.go
     export PATH=$PATH:$GOPATH/bin
-    export PATH=$PATH:$GOROOT/bin
+    export GO111MODULE=on
 
     # fcitx
     export GTK_IM_MODULE=fcitx
@@ -171,6 +171,15 @@
       fi
     }
 
+  # go
+    alias go.init=go-init
+    go-init() {
+      mkdir $1
+      cd $1
+      go mod init github.com/`git config user.name`/$1
+      git init
+    }
+
 
   # script
     # remove duplicate path 
@@ -256,7 +265,7 @@ if ${use_color} ; then
 		fi
 	fi
 
-	PS1='\033[01;32m\]\u\[\033[01;37m\]: \w\[\033[01;32m\] > \[\033[00m\]'
+	PS1="\[\033[01;32m\]\u\[\033[01;37m\]: \w\[\033[00m\] > "
 
 	alias ls='ls --color=auto'
 	alias grep='grep --colour=auto'
