@@ -16,6 +16,7 @@ call coc#add_extension(
       \ 'coc-sh',
       \ 'coc-snippets',
       \ 'coc-tsserver',
+      \ 'coc-neosnippet',
       \)
 
 set hidden
