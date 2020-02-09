@@ -49,6 +49,10 @@
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 
+    # path
+    alias to.vim="cd ~/.config/nvim/"
+    alias to.go="cd ~/program/go"
+
     # others
     alias untargz='tar -zxvf'
     alias cp="cp -i"
@@ -178,6 +182,7 @@
       cd $1
       go mod init github.com/`git config user.name`/$1
       git init
+      cd ..
     }
 
 
