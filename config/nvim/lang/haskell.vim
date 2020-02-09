@@ -1,21 +1,43 @@
 " ---- coc.nvim ----
+" call coc#config('languageserver.haskell', {
+" \  "command": "hie-wrapper",
+" \  "rootPatterns": [
+" \    "stack.yaml",
+" \    "cabal.config",
+" \    "package.yaml"
+" \  ],
+" \  "filetypes": [
+" \    "hs",
+" \    "lhs",
+" \    "haskell"
+" \  ],
+" \  "initializationOptions": {
+" \    "languageServerHaskell": {
+" \    },
+" \  },
+" \})
+"
+
 call coc#config('languageserver.haskell', {
-\  "command": "hie-wrapper",
-\  "rootPatterns": [
-\    "stack.yaml",
-\    "cabal.config",
-\    "package.yaml"
-\  ],
-\  "filetypes": [
-\    "hs",
-\    "lhs",
-\    "haskell"
-\  ],
-\  "initializationOptions": {
-\    "languageServerHaskell": {
-\    },
-\  },
-\})
+      \"command": "ghcide",
+      \      "args": [
+      \        "--lsp"
+      \      ],
+      \      "rootPatterns": [
+      \        ".stack.yaml",
+      \        ".hie-bios",
+      \        "BUILD.bazel",
+      \        "cabal.config",
+      \        "package.yaml"
+      \      ],
+      \      "filetypes": [
+      \        "hs",
+      \        "lhs",
+      \        "haskell"
+      \      ]
+      \    }
+      \    )
+
 
 " ---- haskell-vim  ----
 " syntax
