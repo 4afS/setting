@@ -53,6 +53,9 @@
     alias to.vim="cd ~/.config/nvim/"
     alias to.go="cd ~/program/go"
 
+    # terminal
+    alias term="gnome-terminal >& /dev/null"
+
     # others
     alias untargz='tar -zxvf'
     alias cp="cp -i"
