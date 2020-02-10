@@ -82,5 +82,4 @@ function! s:HoogleWord()
 endfunction
 
 " ---- key map ----
-" nmap <C-l><C-f> :Hindent<CR>
 nnoremap <silent> <C-l>w :HoogleWord<CR>
