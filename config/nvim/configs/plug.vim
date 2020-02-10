@@ -39,7 +39,7 @@ call plug#begin('~/.vim/plugged')
   " shell commands
   Plug 'tpope/vim-eunuch'
   " paretheses
-  Plug 'cohama/lexima.vim'
+  " Plug 'cohama/lexima.vim'
   Plug 'itchyny/vim-parenmatch'
   " incremental search in command mode
   Plug 'junegunn/fzf'
@@ -65,6 +65,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'skywind3000/asyncrun.vim'
   " json
   Plug 'elzr/vim-json'
+  " A (Neo)vim plugin for formatting code.
+  Plug 'sbdchd/neoformat'
 
 call plug#end()
 

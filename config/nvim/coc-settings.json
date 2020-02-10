@@ -3,14 +3,6 @@
   "diagnostic.warningSign": "!>",
   "diagnostic.infoSign": "?>",
   "diagnostic.hintSign": "?>",
-  "coc.preferences.formatOnSaveFiletypes": [
-    "typescript",
-    "c",
-    "rust",
-    "scala",
-    "html",
-    "json",
-    "go"
-  ],
-  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "coc.preferences.formatOnType": true
 }

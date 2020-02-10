@@ -17,6 +17,7 @@ call coc#add_extension(
       \ 'coc-snippets',
       \ 'coc-tsserver',
       \ 'coc-neosnippet',
+      \ 'coc-pairs',
       \)
 
 set hidden
@@ -82,10 +83,11 @@ nmap <silent> <TAB> <Plug>(coc-range-select)
 xmap <silent> <TAB> <Plug>(coc-range-select)
 xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
 
-nmap <C-l><C-f> :call CocAction('format')<CR>
-
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+command! -nargs=? CocFormat :call CocAction('format')
+command! -nargs=? CocFold :call CocAction('fold', <f-args>)
 
 nmap <C-l>i   :call     CocAction('runCommand', 'editor.action.organizeImport')<CR>
 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
