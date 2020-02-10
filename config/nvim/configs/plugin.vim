@@ -54,8 +54,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'liuchengxu/vista.vim'
   " Run Async Shell Commands
   Plug 'skywind3000/asyncrun.vim'
-  " json
-  Plug 'elzr/vim-json'
   " A (Neo)vim plugin for formatting code.
   Plug 'sbdchd/neoformat'
 
