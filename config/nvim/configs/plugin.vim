@@ -17,8 +17,6 @@ call plug#begin('~/.vim/plugged')
   " status line
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  " indent line
-  Plug 'Yggdroot/indentLine'
   " syntax highlight
   Plug 'derekwyatt/vim-scala', {'for': ['scala']}
   Plug 'udalov/kotlin-vim', {'for': ['kotlin']}
@@ -37,7 +35,6 @@ call plug#begin('~/.vim/plugged')
   " shell commands
   Plug 'tpope/vim-eunuch'
   " paretheses
-  " Plug 'cohama/lexima.vim'
   Plug 'itchyny/vim-parenmatch'
   " incremental search in command mode
   Plug 'junegunn/fzf'
@@ -49,12 +46,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'osyo-manga/vim-anzu'
   " language server protocol
   Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
-  " Personal wiki
-  Plug 'vimwiki/vimwiki'
   " Automated Vim session management with file auto-save and persistent undo history
   Plug 'thaerkh/vim-workspace'
-  " A Vim plugin for visually displaying indent levels in code
-  Plug 'nathanaelkane/vim-indent-guides'
   " enable repeating supported plugin maps with "."
   Plug 'tpope/vim-repeat'
   " View and search LSP symbols, tags
