@@ -1,4 +1,4 @@
 cp ./.xprofile ~/
-cp ./.bashrc ~/
+cp ./.zshrc ~/
 cp ./.gitconfig ~/
 cp -p ./locale.conf ~/.config/locale.conf

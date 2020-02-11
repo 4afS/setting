@@ -1,3 +1,6 @@
-yes | sudo pacman -Syu
+sudo pacman -Syu
+sudo pacman -S base-devel yay
 
-yes | sudo pacman -S yay
+yay -S fzf
+
+chsh -s /usr/bin/zsh
