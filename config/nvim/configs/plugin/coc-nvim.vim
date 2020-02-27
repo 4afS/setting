@@ -18,6 +18,7 @@ call coc#add_extension(
       \ 'coc-tsserver',
       \ 'coc-neosnippet',
       \ 'coc-pairs',
+      \ 'coc-metals',
       \)
 
 set hidden

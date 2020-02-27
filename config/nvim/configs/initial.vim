@@ -34,7 +34,7 @@ set wildmenu
 set history=5000
 
 " ---- terminal ----
-set shell=bash
+set shell=zsh
 
 " ---- completion ----
 set completeopt=noinsert,menuone,noselect  
