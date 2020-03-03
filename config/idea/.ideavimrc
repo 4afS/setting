@@ -18,7 +18,10 @@ nnoremap ]d :<C-u>action GotoNextError<CR>
 
 nnoremap / :<C-u>action Find<CR>
 
-" vim
+nnoremap <C-d> <C-d>
+nnoremap <C-u> <C-u>
+
+" vim 
 nnoremap ; :
 
 nnoremap j gj
@@ -38,5 +41,5 @@ nnoremap <Space>J <C-w>J
 nnoremap <Space>K <C-w>K
 nnoremap <Space>L <C-w>L
 nnoremap <Space>H <C-w>H
-nnoremap tj <C-w><
-nnoremap tk <C-w>>
+nnoremap th :action PreviousTab<CR>
+nnoremap tl :action NextTab<CR>
