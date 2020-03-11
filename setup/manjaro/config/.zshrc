@@ -1,15 +1,4 @@
-### Added by Zinit's installer
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing DHARMA Initiative Plugin Manager (zdharma/zinit)…%f"
-    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f"
-fi
-source "$HOME/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-### End of Zinit installer's chunk
+source ~/.zplug/init.zsh
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -17,7 +6,9 @@ DISABLE_MAGIC_FUNCTIONS=true
 
 # User configuration
 # zsh
-  zpcompinit
+  compinit
+  autoload -U promptinit; promptinit
+  prompt pure
 
   setopt no_beep
   # key-bind
@@ -58,19 +49,26 @@ DISABLE_MAGIC_FUNCTIONS=true
     SAVEHIST=2000
 
   # plugin
-    zinit light zsh-users/zsh-autosuggestions
-    zinit light zsh-users/zsh-completions
-    zinit ice wait'!0'; zinit light zdharma/fast-syntax-highlighting
-    zinit ice wait'!0'; zinit light b4b4r07/zsh-vimode-visual
-    zinit ice wait'!0'; zinit light b4b4r07/enhancd
+    zplug "zsh-users/zsh-autosuggestions"
+    zplug "zsh-users/zsh-completions"
+    zplug "zdharma/fast-syntax-highlighting"
+    zplug "b4b4r07/zsh-vimode-visual"
+    zplug "b4b4r07/enhancd"
+    zplug "zplug/zplug", hook-build:'zplug --self-manage'
 
     # config
       ENHANCD_DISABLE_DOT=1
       ENHANCD_DISABLE_HOME=1
 
     # theme
-      zinit ice pick"async.zsh" src"pure.zsh"
-      zinit light sindresorhus/pure
+      zplug "mafredri/zsh-async", from:github
+      zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
+
+
+    if ! zplug check; then
+      zplug install
+    fi
+    zplug load
 
 # alias
   # bash
@@ -204,17 +202,17 @@ DISABLE_MAGIC_FUNCTIONS=true
   mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
 
   # take a backup to ~/.trash when removing files
-  rm_safe() {
-    if expr "$1" : "^-" >/dev/null 2>&1; then
-      echo -e "\e[1;31mERROR\e[m rm-safe: don't use any options"
-      return 1
-    elif [ ! -e ~/.trash ]; then
-      mkdir ~/.trash && mv -fit ~/.trash -fb $@
-    else
-      mv -fit ~/.trash -fb $@
-    fi
-  }
-  alias rm=rm_safe
+  # rm_safe() {
+  #   if expr "$1" : "^-" >/dev/null 2>&1; then
+  #     echo -e "\e[1;31mERROR\e[m rm-safe: don't use any options"
+  #     return 1
+  #   elif [ ! -e ~/.trash ]; then
+  #     mkdir ~/.trash && mv -fit ~/.trash -fb $@
+  #   else
+  #     mv -fit ~/.trash -fb $@
+  #   fi
+  # }
+  # alias rm=rm_safe
 
   # cargo
   cbi() {
@@ -277,3 +275,5 @@ DISABLE_MAGIC_FUNCTIONS=true
 
 # PROMPT=" %~ : ${current_branch} > "
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
