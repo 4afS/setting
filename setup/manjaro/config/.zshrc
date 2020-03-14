@@ -8,7 +8,6 @@ DISABLE_MAGIC_FUNCTIONS=true
 # zsh
   compinit
   autoload -U promptinit; promptinit
-  prompt pure
 
   setopt no_beep
   # key-bind
@@ -80,10 +79,12 @@ DISABLE_MAGIC_FUNCTIONS=true
 
   # neovim
   alias del.swap="rm ~/.local/share/nvim/swap/*"
-  alias vims=nvim
-  alias vim=nvim
-  alias vi=nvim
-  alias v=nvim
+  if [ -e "/usr/bin/nvim" ]; then
+    alias vims=nvim
+    alias vim=nvim
+    alias vi=nvim
+    alias v=nvim
+  fi
 
   # haskell
   alias ghc="stack ghc"
@@ -102,10 +103,11 @@ DISABLE_MAGIC_FUNCTIONS=true
   alias oit.ssh="ssh e1q18048@o-vnc.center.oit.ac.jp"
 
   # ls
-  alias ls='ls --color=auto'
+  alias ls='ls --color=auto --ignore={Desktop,Documents,Downloads,Music,Pictures,Public,Templates,Videos}'
   alias sl=ls
-  alias ll='ls -alF'
-  alias la='ls -A'
+  alias lsa='ls --color=auto'
+  alias ll='ls -alhF'
+  alias la='ls -hA'
   alias l='ls -CF'
 
   # grep
@@ -190,29 +192,21 @@ DISABLE_MAGIC_FUNCTIONS=true
   # java19
   if [ -e "$HOME/.java19" ]; then source $HOME/.java19; fi
 
-  # j() {
-  #   filename=$1
-  #   javac $filename
-  #   filename="${filename%.*}"
-  #   java $filename
-  #   rm $filename.class
-  # }
-
   # mkdir and cd
   mkcd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
 
   # take a backup to ~/.trash when removing files
-  # rm_safe() {
-  #   if expr "$1" : "^-" >/dev/null 2>&1; then
-  #     echo -e "\e[1;31mERROR\e[m rm-safe: don't use any options"
-  #     return 1
-  #   elif [ ! -e ~/.trash ]; then
-  #     mkdir ~/.trash && mv -fit ~/.trash -fb $@
-  #   else
-  #     mv -fit ~/.trash -fb $@
-  #   fi
-  # }
-  # alias rm=rm_safe
+  rm_safe() {
+    if expr "$1" : "^-" >/dev/null 2>&1; then
+      echo -e "\e[1;31mERROR\e[m rm-safe: don't use any options"
+      return 1
+    elif [ ! -e ~/.trash ]; then
+      mkdir ~/.trash && mv -fit ~/.trash -fb $@
+    else
+      mv -fit ~/.trash -fb $@
+    fi
+  }
+  alias rm=rm_safe
 
   # cargo
   cbi() {
@@ -272,8 +266,5 @@ DISABLE_MAGIC_FUNCTIONS=true
   PATH=$_path
   unset _p
   unset _path
-
-# PROMPT=" %~ : ${current_branch} > "
-
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
