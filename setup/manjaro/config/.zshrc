@@ -115,6 +115,14 @@ DISABLE_MAGIC_FUNCTIONS=true
   alias fgrep='fgrep --color=auto'
   alias egrep='egrep --color=auto'
 
+  # git
+  alias g=git
+  alias ga="git add"
+  alias gc="git commit"
+  alias gm="git commit -m"
+  alias gl="git log --pretty=oneline --abbrev-commit -n 20"
+  alias gs="git status"
+
   # path
   alias to.vim="cd ~/.config/nvim/"
   alias to.go="cd ~/program/go"
