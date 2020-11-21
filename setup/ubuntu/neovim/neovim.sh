@@ -1,10 +1,6 @@
-sudo apt install software-properties-common -y
-sudo add-apt-repository ppa:neovim-ppa/unstable -y
-sudo apt update
-sudo apt install neovim -y
+wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage &&\
+	chmod u+x nvim.appimage
 
-pip3 install neovim
-
-sudo npm install -g neovim
-
-mkdir -p $HOME/.config/nvim/
+./nvim.appimage --appimage-extract &&\
+	sudo mv squashfs-root / &&\
+       	sudo ln -s /squashfs-root/AppRun /usr/bin/nvim 
