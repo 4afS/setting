@@ -18,25 +18,32 @@
 " \})
 "
 
+" call coc#config('languageserver.haskell', {
+"       \"command": "ghcide",
+"       \      "args": [
+"       \        "--lsp"
+"       \      ],
+"       \      "rootPatterns": [
+"       \        ".stack.yaml",
+"       \        ".hie-bios",
+"       \        "BUILD.bazel",
+"       \        "cabal.config",
+"       \        "package.yaml"
+"       \      ],
+"       \      "filetypes": [
+"       \        "hs",
+"       \        "lhs",
+"       \        "haskell"
+"       \      ]
+"       \    }
+"       \    )
+
 call coc#config('languageserver.haskell', {
-      \"command": "ghcide",
-      \      "args": [
-      \        "--lsp"
-      \      ],
-      \      "rootPatterns": [
-      \        ".stack.yaml",
-      \        ".hie-bios",
-      \        "BUILD.bazel",
-      \        "cabal.config",
-      \        "package.yaml"
-      \      ],
-      \      "filetypes": [
-      \        "hs",
-      \        "lhs",
-      \        "haskell"
-      \      ]
-      \    }
-      \    )
+  \     "command": "haskell-language-server-wrapper",
+  \     "args": ["--lsp"],
+  \     "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
+  \     "filetypes": ["haskell", "lhaskell"]
+  \ })
 
 
 " ---- haskell-vim  ----
