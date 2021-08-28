@@ -1,21 +1,10 @@
 set surround
-set clipboard=unnamed
+set clipboard-=ideaput
+set clipboard+=unnamed
 
 " IDEA
 nnoremap <Space>o :action CommentByLineComment<CR>
 vnoremap <Space>o :action CommentByLineComment<CR>
-
-nnoremap <Space>r :action Run<CR>
-nnoremap <Space>R :action RunClass<CR>
-
-nnoremap <C-l>f :action ShowIntentionActions<CR>
-nnoremap <C-l><C-f> :action ReformatCode<CR>
-nnoremap <C-l>rn :action RenameElement<CR>
-nnoremap <C-k> :action Scala.TypeInfo<CR>
-nnoremap <C-d> :action GotoImplementation<CR>
-nnoremap [d :<C-u>action GotoPreviousError<CR>
-nnoremap ]d :<C-u>action GotoNextError<CR>
-
 nnoremap / :<C-u>action Find<CR>
 
 nnoremap <C-d> <C-d>
