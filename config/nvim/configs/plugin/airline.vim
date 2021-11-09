@@ -50,8 +50,8 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 nnoremap <silent> bn :enew<CR>
 nnoremap <silent> bh :bp<CR>
 nnoremap <silent> bl :bn<CR>
-nnoremap <silent> bd :bd<CR>
-nnoremap <silent> bD :bd!<CR>
+nnoremap <silent> bc :bd<CR>
+nnoremap <silent> bC :bd!<CR>
 
 " asyncrun
 function! AirlineThemePatch(palette)

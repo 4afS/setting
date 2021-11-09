@@ -79,6 +79,7 @@ nmap <C-l>a  <Plug>(coc-codeaction-selected)
 
 nmap <C-l>ca  <Plug>(coc-codeaction)
 nmap <C-l>f  <Plug>(coc-fix-current)
+nmap <C-l>i  <Plug>(coc-implementation)
 
 nmap <silent> <TAB> <Plug>(coc-range-select)
 xmap <silent> <TAB> <Plug>(coc-range-select)
@@ -87,7 +88,7 @@ xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
 command! -nargs=? CocFormat :call CocAction('format')
 command! -nargs=? CocFold :call CocAction('fold', <f-args>)
 
-nmap <C-l>i   :call     CocAction('runCommand', 'editor.action.organizeImport')<CR>
+nmap <C-l>o   :call     CocAction('runCommand', 'editor.action.organizeImport')<CR>
 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
